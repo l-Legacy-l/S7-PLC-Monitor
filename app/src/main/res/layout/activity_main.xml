@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.MainActivity">
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/bt_main_con"
@@ -14,7 +14,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:onClick="btnClick"
         android:text="Connexion" />
 
     <Button
@@ -24,7 +23,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:onClick="btnClick"
         android:text="Inscription" />
 
 </LinearLayout>
