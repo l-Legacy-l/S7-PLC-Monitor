@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_register_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_save" />
+
+
+    <TextView
+        android:id="@+id/tv_register_ins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Inscription"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_register_nom"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Nom"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_register_pre"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Prénom"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_register_email"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/et_register_passwd"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Mot de passe"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/bt_register_ins"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="S'inscrire" />
+
+</LinearLayout>
