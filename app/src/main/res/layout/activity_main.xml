@@ -17,7 +17,7 @@
         android:text="Connexion" />
 
     <Button
-        android:id="@+id/button_main_ins"
+        android:id="@+id/bt_main_ins"
         android:layout_width="170dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
