@@ -55,7 +55,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/et_register_passwd"
+        android:id="@+id/et_register_mdp"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
