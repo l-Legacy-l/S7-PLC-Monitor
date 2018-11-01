@@ -1,7 +1,9 @@
-package com.example.fabio.plcmonitor;
+package com.example.fabio.plcmonitor.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.fabio.plcmonitor.R;
 
 public class LoginActivity extends AppCompatActivity {
 
