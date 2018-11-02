@@ -71,6 +71,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
+        android:onClick="registerClick"
         android:text="S'inscrire" />
 
 </LinearLayout>

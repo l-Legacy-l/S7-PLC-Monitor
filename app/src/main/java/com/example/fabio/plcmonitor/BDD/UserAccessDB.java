@@ -37,7 +37,7 @@ public class UserAccessDB {
     public void openForRead(){db = userDb.getReadableDatabase();}
     public void Close(){db.close();}
 
-    public long InsertUser(User u){
+    public long insertUser(User u){
 
         ContentValues content = new ContentValues();
 
