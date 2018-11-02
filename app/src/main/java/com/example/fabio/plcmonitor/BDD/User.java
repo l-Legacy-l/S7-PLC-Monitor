@@ -10,6 +10,8 @@ public class User {
     private String mdp;
     private boolean isAdmin;
 
+    public User() {}
+
     public User(String nom,String prenom, String email, String mdp, boolean isAdmin){
         this.nom = nom;
         this.prenom = prenom;
@@ -30,11 +32,11 @@ public class User {
     public String getEmail(){return email;}
     public void setEmail(String email){this.email = email;}
 
-    public String getPassword(){return mdp;}
-    public void setPassword(String mdp){this.mdp = mdp;}
+    public String getMdp(){return mdp;}
+    public void setMdp(String mdp){this.mdp = mdp;}
 
     public boolean getIsAdmin(){return isAdmin;}
-    public void setAdmin(boolean isAdmin){this.isAdmin = isAdmin;}
+    public void setIsAdmin(boolean isAdmin){this.isAdmin = isAdmin;}
 
     @Override
     public String toString(){
