@@ -98,27 +98,31 @@ public class UserAccessDB {
         return tabUser;
     }
 
-    //A utiliser pour la recherche de doublons
-    public String search(String value,String returnColumn)
+    public User getUser (String email)
     {
-        openForRead();
-        String query = "Select EMAIL, "+returnColumn+" from "+TABLE_USER;
+        Cursor c = db.query(TABLE_USER, new String[]{COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_ADMIN},
+                COL_EMAIL + " LIKE \"" + email + "\"", null, null, null, COL_EMAIL);
 
-        Cursor cursor = db.rawQuery(query, null);
-        String a,b;
-        b = "not found";
-
-        if(cursor.moveToFirst())
+        //Si pas de résultat
+        if(c.getCount() == 0)
         {
-            do{
-                a = cursor.getString(0);
-                if(a.equals(value))
-                {
-                    b = cursor.getString(1);
-                    break;
-                }
-            }while(cursor.moveToNext());
+            c.close();
+            return null;
         }
-        return b;
+        //On a un résultat, on accède à la ligne
+        c.moveToFirst();
+        //On recrée l'user
+        User user1 = new User();
+        user1.setId(c.getInt(NUM_COL_ID));
+        user1.setEmail(c.getString(NUM_COL_EMAIL));
+        user1.setNom(c.getString(NUM_COL_NOM));
+        user1.setPrenom(c.getString(NUM_COL_PRENOM));
+        user1.setMdp(c.getString(NUM_COL_PASSWORD));
+        user1.setIsAdmin(Boolean.parseBoolean(c.getString(NUM_COL_ADMIN)));
+        c.close();
+
+        return user1;
+
     }
+
 }
