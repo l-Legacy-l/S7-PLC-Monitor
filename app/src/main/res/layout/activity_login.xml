@@ -27,7 +27,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/tv_login_mdp"
+        android:id="@+id/et_login_mdp"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -42,5 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
+        android:onClick="btnLoginClick"
         android:text="Se connecter" />
 </LinearLayout>
