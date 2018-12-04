@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 //On vérifie si le mot de passe entrée correspond à l'user qui possède le mail
                 if(mdp.equals(user1.getMdp()))
                 {
+                    Toast.makeText(getApplicationContext(), "Bienvenue " + user1.getPrenom() + " "+user1.getNom(),Toast.LENGTH_SHORT).show();
                     //On est connecté, on passe à l'activité de management
                     Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
                     startActivity(intent);
