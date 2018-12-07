@@ -8,23 +8,21 @@
     tools:context=".Activity.ManagementActivity">
 
     <Button
-        android:id="@+id/bt_management_param"
-        android:layout_width="208dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:onClick="btnParamClick"
-        android:text="Paramètres" />
-
-    <Button
         android:id="@+id/bt_management_comprime"
         android:layout_width="208dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:onClick="btnCompClick"
         android:text="Comprimés" />
 
+    <Button
+        android:id="@+id/bt_management_regulateur"
+        android:layout_width="208dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:onClick="btnRegulClick"
+        android:text="Régulateur" />
 </LinearLayout>
