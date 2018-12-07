@@ -1,0 +1,10 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_param"
+        android:title="Paramètres"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_gestion"
+        android:title="Gestion utilisateurs"
+        app:showAsAction="never"></item>
+</menu>

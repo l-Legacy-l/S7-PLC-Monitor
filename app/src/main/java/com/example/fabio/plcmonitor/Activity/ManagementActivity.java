@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.fabio.plcmonitor.R;
@@ -18,6 +20,13 @@ public class ManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_management);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //ajoute les entrées de menu.xml à l'ActionBar
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
     public void btnParamClick(View v)
     {
 
@@ -28,9 +37,14 @@ public class ManagementActivity extends AppCompatActivity {
 
     }
 
-    public void btnRegulClick(View v)
-    {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_gestion) {
+            Intent intent = new Intent(getApplicationContext(), ManagementUserActivity.class);
+            startActivity(intent);
+        }
 
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
