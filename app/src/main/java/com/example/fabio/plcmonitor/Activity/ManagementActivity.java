@@ -14,25 +14,35 @@ import com.example.fabio.plcmonitor.R;
 
 public class ManagementActivity extends AppCompatActivity {
 
+    MenuItem gestionItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //ajoute les entrées de menu.xml à l'ActionBar
         getMenuInflater().inflate(R.menu.menu, menu);
+        gestionItem = menu.findItem(R.id.action_gestion);
+        Boolean isAdmin =  Boolean.parseBoolean(this.getIntent().getStringExtra("isAdmin"));
+
+        if(!isAdmin)
+        {
+            gestionItem.setVisible(false);
+        }
         return true;
     }
 
-    public void btnParamClick(View v)
+
+    public void btnCompClick(View v)
     {
 
     }
 
-    public void btnCompClick(View v)
+    public void btnRegulClick(View v)
     {
 
     }
@@ -41,6 +51,12 @@ public class ManagementActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_gestion) {
             Intent intent = new Intent(getApplicationContext(), ManagementUserActivity.class);
+            startActivity(intent);
+        }
+
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         }
 
