@@ -19,7 +19,8 @@
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ManagementActivity" />
-        <activity android:name=".Activity.ManagementUserActivity"></activity>
+        <activity android:name=".Activity.ManagementUserActivity" />
+        <activity android:name=".Activity.SettingsActivity"></activity>
     </application>
 
 </manifest>
