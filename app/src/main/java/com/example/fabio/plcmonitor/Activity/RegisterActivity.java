@@ -49,14 +49,26 @@ public class RegisterActivity extends AppCompatActivity {
 
                     UserAccessDB userDB = new UserAccessDB(this);
                     userDB.openForWrite();
-                    userDB.insertUser(user);
-                    userDB.Close();
 
-                    Toast.makeText(getApplicationContext(), "Inscription réussie",Toast.LENGTH_SHORT).show();
-                    finish();
-                    //On affiche la page de connexion
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
+                    //On vérifie que le mail n'a pas déja été utilisé pour éviter les doublons
+                    if(userDB.getUser(email.getText().toString()) == null)
+                    {
+                        userDB.insertUser(user);
+                        userDB.Close();
+
+                        Toast.makeText(getApplicationContext(), "Inscription réussie",Toast.LENGTH_SHORT).show();
+                        finish();
+                        //On affiche la page de connexion
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Cette adresse mail a déjà été utilisée",Toast.LENGTH_SHORT).show();
+                        userDB.Close();
+                    }
+
                 }
 
                 else
