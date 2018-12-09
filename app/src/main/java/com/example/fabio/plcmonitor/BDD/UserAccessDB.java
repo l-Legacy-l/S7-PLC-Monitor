@@ -89,8 +89,14 @@ public class UserAccessDB {
             user1.setNom(c.getString(NUM_COL_NOM));
             user1.setPrenom(c.getString(NUM_COL_PRENOM));
 
-            Boolean isAdmin = Boolean.parseBoolean(c.getString(NUM_COL_ADMIN));
-            user1.setIsAdmin(isAdmin);
+            if(c.getInt(NUM_COL_ADMIN) == 1)
+            {
+                user1.setIsAdmin(true);
+            }
+            else
+            {
+                user1.setIsAdmin(false);
+            }
 
             tabUser.add(user1);
         }
@@ -118,7 +124,15 @@ public class UserAccessDB {
         user1.setNom(c.getString(NUM_COL_NOM));
         user1.setPrenom(c.getString(NUM_COL_PRENOM));
         user1.setMdp(c.getString(NUM_COL_PASSWORD));
-        user1.setIsAdmin(Boolean.parseBoolean(c.getString(NUM_COL_ADMIN)));
+
+        if(c.getInt(NUM_COL_ADMIN) == 1)
+        {
+            user1.setIsAdmin(true);
+        }
+        else
+        {
+            user1.setIsAdmin(false);
+        }
         c.close();
 
         return user1;

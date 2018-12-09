@@ -27,7 +27,7 @@ public class UserBddSqlite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BDD);
         //utilisateur admin
-        db.execSQL("INSERT INTO table_user (EMAIL, NOM, PRENOM, PASSWORD, ADMIN) VALUES ('admin@gmail.com', 'root', 'user', 'Test123*', 'true')");
+        db.execSQL("INSERT INTO table_user (EMAIL, NOM, PRENOM, PASSWORD, ADMIN) VALUES ('admin@gmail.com', 'root', 'user', 'Test123*', 1)");
 
     }
 
