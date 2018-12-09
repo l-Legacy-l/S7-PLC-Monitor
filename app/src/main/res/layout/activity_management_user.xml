@@ -21,6 +21,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:gravity="center"
+        android:onClick="muserClick"
         android:text="Administrateur"
         android:textSize="17sp" />
 

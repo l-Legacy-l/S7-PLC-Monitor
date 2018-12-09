@@ -82,4 +82,28 @@ public class ManagementUserActivity extends AppCompatActivity {
         spin.setAdapter(adapters);
     }
 
+    public void muserClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.sw_muser_admin:
+                db.openForRead();
+                User user1 = db.getUser(spin.getSelectedItem().toString());
+                db.Close();
+                //On gère le cas où on clique sur le switch
+                if(switchAdmin.isChecked())
+                {
+                    user1.setIsAdmin(true);
+                }
+                else
+                {
+                    user1.setIsAdmin(false);
+                }
+                //On met à jour l'user dans la BDD
+                db.openForWrite();
+                db.updateUser(user1.getId(),user1);
+                db.Close();
+             break;
+        }
+    }
 }
