@@ -50,5 +50,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:onClick="muserClick"
         android:text="Modifier le mot de passe" />
 </LinearLayout>

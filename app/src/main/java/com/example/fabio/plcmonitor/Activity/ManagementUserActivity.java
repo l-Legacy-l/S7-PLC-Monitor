@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.BDD.User;
 import com.example.fabio.plcmonitor.BDD.UserAccessDB;
@@ -23,6 +24,7 @@ public class ManagementUserActivity extends AppCompatActivity {
     Switch switchAdmin;
 
     EditText etMdp;
+    String mdp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +111,18 @@ public class ManagementUserActivity extends AppCompatActivity {
                 db.Close();
              break;
 
+            case R.id.bt_muser_editMdp:
+                mdp = etMdp.getText().toString();
+                db.openForRead();
+                User user2 = db.getUser(spin.getSelectedItem().toString());
+                db.Close();
+                //On met à jour le mdp
+                user2.setMdp(mdp);
+                db.openForWrite();
+                db.updateUser(user2.getId(),user2);
+                db.Close();
 
+                Toast.makeText(getApplicationContext(), "Le mot de passe a bien été modifié",Toast.LENGTH_SHORT).show();
         }
     }
 }
