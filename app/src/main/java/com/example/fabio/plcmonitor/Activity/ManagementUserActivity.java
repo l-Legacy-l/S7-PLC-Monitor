@@ -1,5 +1,7 @@
 package com.example.fabio.plcmonitor.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -123,6 +125,36 @@ public class ManagementUserActivity extends AppCompatActivity {
                 db.Close();
 
                 Toast.makeText(getApplicationContext(), "Le mot de passe a bien été modifié",Toast.LENGTH_SHORT).show();
+             break;
+
+            case R.id.bt_muser_delete:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(ManagementUserActivity.this);
+                builder.setMessage("Cette action supprimera l'utilisateur, voulez-vous continuer ?");
+                builder.setCancelable(true);
+                builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        db.openForRead();
+                        User user3 = db.getUser(spin.getSelectedItem().toString());
+                        db.Close();
+
+                        db.openForWrite();
+                        db.removeUser(user3.getId());
+                        db.Close();
+                        //On reremplis le spinner sinon l'utilsateur reste selectionnable dans le spinner
+                        fillingSpin();
+
+                        Toast.makeText(getApplicationContext(), "L'utilisateur a bien été supprimé",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
         }
     }
 }
