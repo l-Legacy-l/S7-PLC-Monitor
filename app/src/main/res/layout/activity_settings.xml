@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.SettingsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_settings_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="IP"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_settings_rack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Rack"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_settings_slot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Slot"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_settings_databloc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="DataBloc"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/bt_settings_valider"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="Valider" />
+</LinearLayout>
