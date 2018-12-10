@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -20,6 +21,8 @@ public class ManagementUserActivity extends AppCompatActivity {
 
     Spinner spin;
     Switch switchAdmin;
+
+    EditText etMdp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +53,14 @@ public class ManagementUserActivity extends AppCompatActivity {
                     switchAdmin.setChecked(false);
                 }
 
+                // On remplis automatiquement le mot de passe de l'utilisateur dans le champ mdp
+                etMdp = ((EditText)findViewById(R.id.et_muser_mdp));
+                etMdp.setText(user1.getMdp().toString());
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("item nothing");
             }
-
         });
     }
 
@@ -104,6 +108,8 @@ public class ManagementUserActivity extends AppCompatActivity {
                 db.updateUser(user1.getId(),user1);
                 db.Close();
              break;
+
+
         }
     }
 }
