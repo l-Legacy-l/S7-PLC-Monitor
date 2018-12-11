@@ -22,36 +22,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Rack"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/et_settings_slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Slot"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
-        android:id="@+id/et_settings_databloc"
+        android:id="@+id/et_settings_datablock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="DataBloc"
-        android:inputType="textPersonName" />
+        android:hint="Datablock"
+        android:inputType="number" />
 
     <Button
-        android:id="@+id/bt_settings_valider"
-        android:layout_width="177dp"
+        android:id="@+id/button"
+        android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
+        android:onClick="btnValiderClick"
         android:text="Valider" />
+
 </LinearLayout>
