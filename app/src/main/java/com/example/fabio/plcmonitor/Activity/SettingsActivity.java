@@ -40,29 +40,20 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void btnValiderClick(View v)
     {
-        if(!String.valueOf(etIp).isEmpty() && !String.valueOf(etRack).isEmpty() && !String.valueOf(etSlot).isEmpty() &&
-                !String.valueOf(etDatablock).isEmpty())
+        if(!(etIp.getText().toString().isEmpty()) && !(etRack.getText().toString().isEmpty()) && !(etSlot.getText().toString().isEmpty())
+                && !(etDatablock.getText().toString().isEmpty()))
         {
             ip = etIp.getText().toString();
-            try
-            {
-                rack = Integer.parseInt(etRack.getText().toString());
-                slot = Integer.parseInt(etSlot.getText().toString());
-                datablock = Integer.parseInt(etDatablock.getText().toString());
-                //Enregistrement dans la classe statique (plus pratique dans ce cas pour ne pas avoir plusieurs instances)
-                Configs.setIp(ip);
-                Configs.setRack(rack);
-                Configs.setSlot(slot);
-                Configs.setDatablock(datablock);
+            rack = Integer.parseInt(etRack.getText().toString());
+            slot = Integer.parseInt(etSlot.getText().toString());
+            datablock = Integer.parseInt(etDatablock.getText().toString());
+            //Enregistrement dans la classe statique (plus pratique dans ce cas pour ne pas avoir plusieurs instances)
+            Configs.setIp(ip);
+            Configs.setRack(rack);
+            Configs.setSlot(slot);
+            Configs.setDatablock(datablock);
 
-                Toast.makeText(getApplicationContext(), "Enregistrement de la configuration effectué",Toast.LENGTH_SHORT).show();
-
-            }
-
-            catch(NumberFormatException e)
-            {
-                Toast.makeText(getApplicationContext(), "Donnée(s) incorrecte(s)",Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(getApplicationContext(), "Enregistrement de la configuration effectué",Toast.LENGTH_SHORT).show();
 
         }
 
