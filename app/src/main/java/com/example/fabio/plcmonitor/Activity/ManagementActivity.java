@@ -37,14 +37,13 @@ public class ManagementActivity extends AppCompatActivity {
     }
 
 
-    public void btnCompClick(View v)
+    public void btnClick(View v)
     {
-
-    }
-
-    public void btnRegulClick(View v)
-    {
-
+        if(v.getId() == R.id.bt_management_comprime)
+        {
+            Intent intent = new Intent(getApplicationContext(), AutomatonCompActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
