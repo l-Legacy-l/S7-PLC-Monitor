@@ -20,7 +20,8 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ManagementActivity" />
         <activity android:name=".Activity.ManagementUserActivity" />
-        <activity android:name=".Activity.SettingsActivity"></activity>
+        <activity android:name=".Activity.SettingsActivity" />
+        <activity android:name=".Activity.AutomatonCompActivity"></activity>
     </application>
 
 </manifest>
