@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
+        android:onClick="onMainClickManager"
         android:text="Selecteur en service"
         android:textSize="18sp" />
 
@@ -62,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
+        android:onClick="onMainClickManager"
         android:text="Arrivée des flacons vides"
         android:textSize="18sp" />
 
@@ -86,6 +88,7 @@
             android:id="@+id/bt_comp_5"
             android:layout_width="65dp"
             android:layout_height="65dp"
+            android:onClick="onMainClickManager"
             android:text="5" />
 
         <Button
@@ -93,6 +96,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="50dp"
+            android:onClick="onMainClickManager"
             android:text="10" />
 
         <Button
@@ -100,6 +104,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="50dp"
+            android:onClick="onMainClickManager"
             android:text="15" />
     </LinearLayout>
 
@@ -132,8 +137,9 @@
         android:layout_height="38dp"
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/red"
         android:clickable="false"
+        android:onClick="onMainClickManager"
         app:srcCompat="@android:drawable/ic_lock_power_off"
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="95dp" />
