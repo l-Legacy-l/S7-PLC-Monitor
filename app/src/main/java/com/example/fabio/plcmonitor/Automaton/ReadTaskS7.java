@@ -1,11 +1,16 @@
 package com.example.fabio.plcmonitor.Automaton;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.fabio.plcmonitor.Configs;
+import com.example.fabio.plcmonitor.R;
 import com.example.fabio.plcmonitor.SimaticS7.S7Client;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -97,6 +102,40 @@ public class ReadTaskS7
         readThread.interrupt();
     }
 
+    //Méthode exécuté avant le lancement
+    private void downloadOnPreExecute(int t) {
+        tv_comp_plcNumber.setText(t);
+    }
+
+    //Mise à jour durant le traitement
+    private void downloadOnProgressUpdate(int progress) {
+    }
+
+    //Après le traitement de la tâche de fond
+    private void downloadOnPostExecute() {
+        Toast.makeText(vi_comp_ui.getContext(), "Vous avez été déconnecté de l'automate", Toast.LENGTH_LONG).show();
+    }
+
+    //Handler -> gestion des différents messages envoyés au thread
+    private Handler monHandler = new Handler() {
+
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            switch (msg.what){
+                case MESSAGE_PRE_EXECUTE:
+                    downloadOnPreExecute(msg.arg1);
+                    break;
+                case MESSAGE_PROGRESS_UPDATE:
+                    downloadOnProgressUpdate(msg.arg1);
+                    break;
+                case MESSAGE_POST_EXECUTE:
+                    downloadOnPostExecute();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
     private class AutomateS7 implements Runnable
     {
 
