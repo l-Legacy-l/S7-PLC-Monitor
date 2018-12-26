@@ -2,6 +2,7 @@ package com.example.fabio.plcmonitor.Automaton;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
+import com.example.fabio.plcmonitor.SimaticS7.S7;
 import com.example.fabio.plcmonitor.SimaticS7.S7Client;
+import com.example.fabio.plcmonitor.SimaticS7.S7OrderCode;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -104,7 +107,8 @@ public class ReadTaskS7
 
     //Méthode exécuté avant le lancement
     private void downloadOnPreExecute(int t) {
-        tv_comp_plcNumber.setText(t);
+        //Affichage du numéro de PLC
+        tv_comp_plcNumber.setText(String.valueOf(t));
     }
 
     //Mise à jour durant le traitement
@@ -121,6 +125,7 @@ public class ReadTaskS7
 
         public void handleMessage(Message msg){
             super.handleMessage(msg);
+            System.out.println("je passe" + "handler");
             switch (msg.what){
                 case MESSAGE_PRE_EXECUTE:
                     downloadOnPreExecute(msg.arg1);
@@ -143,8 +148,55 @@ public class ReadTaskS7
     {
         //Méthode qui se connecte à l'automate et écrit les valeurs de l'automate
         @Override
-        public void run() {
+        public void run()
+        {
+            try{
+                //Type de connexion
+                comS7.SetConnectionType(S7.S7_BASIC);
+                //Retourne 0 si la connexion est réussi
+                Integer res = comS7.ConnectTo(param[0],Integer.valueOf(param[1]),Integer.valueOf(param[2]));
+                S7OrderCode orderCode = new S7OrderCode();
+                //Récupère le numéro de référence de la CPU, retourné 0 si c'est réussi
+                Integer result = comS7.GetOrderCode(orderCode);
+                int  numCPU=-1;
+                if(res.equals(0) && result.equals(0)){
+                    numCPU = Integer.valueOf(orderCode.Code().toString().substring(5, 8));
+                }
+                else{
+                    numCPU = 0000;
+                }
 
+                sendPreExecuteMessage(numCPU);
+
+                //Lecture de la variable API, traitement en boucle
+                while(isRunning.get())
+                {
+                    if(res.equals(0)){
+                        int retInfo = comS7.ReadArea(S7.S7AreaDB, databloc,0,32,datasPLC);
+                        int data = 0;
+
+                        if( retInfo == 0){
+                            //Lecture de la donnée
+                            data = S7.GetWordAt(datasPLC,0);
+                            //On transfert la valeur à l'UI
+                            sendProgressMessage(data);
+                        }
+                        Log.i("Variable A.P.I. ->",String.valueOf(data));
+                    }
+                    try {
+                        Thread.sleep(500);
+                    }
+                    catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                //Traitement terminé
+                sendPostExecuteMessage();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                System.out.println("je passe" + e);
+            }
         }
 
         //Après le traitement principal --> définition du message: connexion stoppé
