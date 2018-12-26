@@ -136,12 +136,40 @@ public class ReadTaskS7
             }
         }
     };
+
+    //Classe interne pour lire les valeurs de l'automate.
+    //Utilise l'handler pour écrire les valeurs lues
     private class AutomateS7 implements Runnable
     {
-
+        //Méthode qui se connecte à l'automate et écrit les valeurs de l'automate
         @Override
         public void run() {
 
+        }
+
+        //Après le traitement principal --> définition du message: connexion stoppé
+        private void sendPostExecuteMessage() {
+            Message postExecuteMsg = new Message();
+            postExecuteMsg.what = MESSAGE_POST_EXECUTE;
+            monHandler.sendMessage(postExecuteMsg);
+        }
+
+        //Avant le traitement principal --> définition du message: connexion démarré
+        //Transfert de la référence de l'API (PLC)
+        private void sendPreExecuteMessage(int v) {
+            Message preExecuteMsg = new Message();
+            preExecuteMsg.what = MESSAGE_PRE_EXECUTE;
+            preExecuteMsg.arg1 = v;
+            monHandler.sendMessage(preExecuteMsg);
+        }
+
+        //Durant de traitement principal --> définition du message: automate en service
+        //Transfert de la valeur dans la variable récupérée dans l’A.P.I.
+        private void sendProgressMessage(int i) {
+            Message progressMsg = new Message();
+            progressMsg.what = MESSAGE_PROGRESS_UPDATE;
+            progressMsg.arg1 = i;
+            monHandler.sendMessage(progressMsg);
         }
     }
 
