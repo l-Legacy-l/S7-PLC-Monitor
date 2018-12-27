@@ -27,6 +27,7 @@ public class ReadTaskS7
 
     private AtomicBoolean isRunning = new AtomicBoolean(false);
 
+    //Pour les comprimés
     private TextView tv_comp_plcNumber;
     private TextView tv_comp_nbBouteille;
     private CheckBox cb_comp_service;
@@ -35,7 +36,22 @@ public class ReadTaskS7
     private Button bt_comp_10;
     private Button bt_comp_15;
     private ImageButton ib_comp_connexion;
-    private View vi_comp_ui;
+
+    //Pour l'asservissement de niveau
+    private TextView tv_asserv_PLCnumber;
+    private TextView tv_asserv_niveauEau;
+    private CheckBox cb_asserv_valve1;
+    private CheckBox cb_asserv_valve2;
+    private CheckBox cb_asserv_valve3;
+    private CheckBox cb_asserv_valve4;
+    private Button bt_asserv_manuel;
+    private Button bt_asserv_auto;
+    private ImageButton ib_asserv_connexion;
+
+    private View vi_ui;
+
+    //Attribut permettant de connaitre quelle automate on contacte
+    private int numAutomate;
 
     private Integer databloc = Configs.getDatablock();
 
@@ -55,11 +71,11 @@ public class ReadTaskS7
     public boolean isConnected= false;
 
     //Constructeur ReadTaskS7 pour les comprimés
-    public ReadTaskS7(View vi_comp_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
-                      Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion)
+    public ReadTaskS7(View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
+                      Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion, int numAutomate)
     {
         //Objets modifiés par la tâche de fond
-        this.vi_comp_ui = vi_comp_ui;
+        this.vi_ui = vi_ui;
         this.tv_comp_plcNumber = tv_comp_plcNumber;
         this.tv_comp_nbBouteille = tv_comp_nbBouteille;
         this.cb_comp_service = cb_comp_service;
@@ -68,10 +84,32 @@ public class ReadTaskS7
         this.bt_comp_10 = bt_comp_10;
         this.bt_comp_15 = bt_comp_15;
         this.ib_comp_connexion = ib_comp_connexion;
+        this.numAutomate = numAutomate;
 
         comS7 = new S7Client();
         plcS7 = new AutomateS7();
+        //Thread de lecture d'informations
+        readThread = new Thread(plcS7);
+    }
 
+    //Constructeur pour l'asservissement
+    public ReadTaskS7(View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2,
+                      CheckBox cb_asserv_valve3, CheckBox cb_asserv_valve4, Button bt_asserv_manuel, Button bt_asserv_auto, ImageButton ib_asserv_connexion, int numAutomate)
+    {
+        this.vi_ui = vi_ui;
+        this.tv_asserv_PLCnumber = tv_asserv_PLCnumber;
+        this.tv_asserv_niveauEau = tv_asserv_niveauEau;
+        this.cb_asserv_valve1 = cb_asserv_valve1;
+        this.cb_asserv_valve2 = cb_asserv_valve2;
+        this.cb_asserv_valve3 = cb_asserv_valve3;
+        this.cb_asserv_valve4 = cb_asserv_valve4;
+        this.bt_asserv_manuel = bt_asserv_manuel;
+        this.bt_asserv_auto = bt_asserv_auto;
+        this.ib_asserv_connexion = ib_asserv_connexion;
+        this.numAutomate = numAutomate;
+
+        comS7 = new S7Client();
+        plcS7 = new AutomateS7();
         //Thread de lecture d'informations
         readThread = new Thread(plcS7);
     }
@@ -108,7 +146,15 @@ public class ReadTaskS7
     //Méthode exécuté avant le lancement
     private void downloadOnPreExecute(int t) {
         //Affichage du numéro de PLC
-        tv_comp_plcNumber.setText(String.valueOf(t));
+        //Si la demande vient de l'activité pour les comprimés
+        if(numAutomate == 1)
+        {
+            tv_comp_plcNumber.setText(String.valueOf(t));
+        }
+        else
+        {
+            tv_asserv_PLCnumber.setText(String.valueOf(t));
+        }
     }
 
     //Mise à jour durant le traitement
@@ -117,7 +163,7 @@ public class ReadTaskS7
 
     //Après le traitement de la tâche de fond
     private void downloadOnPostExecute() {
-        Toast.makeText(vi_comp_ui.getContext(), "Vous avez été déconnecté de l'automate", Toast.LENGTH_LONG).show();
+        Toast.makeText(vi_ui.getContext(), "Vous avez été déconnecté de l'automate", Toast.LENGTH_LONG).show();
     }
 
     //Handler -> gestion des différents messages envoyés au thread
@@ -125,7 +171,6 @@ public class ReadTaskS7
 
         public void handleMessage(Message msg){
             super.handleMessage(msg);
-            System.out.println("je passe" + "handler");
             switch (msg.what){
                 case MESSAGE_PRE_EXECUTE:
                     downloadOnPreExecute(msg.arg1);

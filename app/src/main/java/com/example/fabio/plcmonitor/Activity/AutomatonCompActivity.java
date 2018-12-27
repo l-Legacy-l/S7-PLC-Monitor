@@ -68,7 +68,7 @@ public class AutomatonCompActivity extends AppCompatActivity
 
                         try{
                             readS7 = new ReadTaskS7(v, tv_comp_PLCnumber, tv_comp_nbBouteille, cb_comp_service, cb_comp_flacon, bt_comp_5,
-                                    bt_comp_10, bt_comp_15, ib_comp_connexion);
+                                    bt_comp_10, bt_comp_15, ib_comp_connexion,1);
                             readS7.Start(Configs.getIp(), Integer.toString(Configs.getRack()), Integer.toString(Configs.getSlot()));
 
                             ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.green));
@@ -104,6 +104,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                 {
                     //On est déjà connecté donc on veut se déconnecter
                     ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.red));
+                    readS7.Stop();
                 }
         }
     }
