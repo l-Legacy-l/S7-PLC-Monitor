@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +24,8 @@
         <activity android:name=".Activity.ManagementActivity" />
         <activity android:name=".Activity.ManagementUserActivity" />
         <activity android:name=".Activity.SettingsActivity" />
-        <activity android:name=".Activity.AutomatonCompActivity"></activity>
+        <activity android:name=".Activity.AutomatonCompActivity" />
+        <activity android:name=".Activity.AutomatonAsservActivity"></activity>
     </application>
 
 </manifest>

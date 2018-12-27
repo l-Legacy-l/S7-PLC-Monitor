@@ -44,6 +44,12 @@ public class ManagementActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), AutomatonCompActivity.class);
             startActivity(intent);
         }
+
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), AutomatonAsservActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
