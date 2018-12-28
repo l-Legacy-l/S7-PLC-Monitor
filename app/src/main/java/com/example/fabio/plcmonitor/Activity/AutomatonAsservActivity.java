@@ -23,14 +23,9 @@ public class AutomatonAsservActivity extends AppCompatActivity {
     private NetworkInfo network;
     private ConnectivityManager statusConnexion;
 
-    private TextView tv_asserv_PLCnumber;
-    private TextView tv_asserv_niveauEau;
-    private CheckBox cb_asserv_valve1;
-    private CheckBox cb_asserv_valve2;
-    private CheckBox cb_asserv_valve3;
-    private CheckBox cb_asserv_valve4;
-    private Button bt_asserv_manuel;
-    private Button bt_asserv_auto;
+    private TextView tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel, tv_asserv_motPilotageVanne;
+    private CheckBox cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4;
+    private Button bt_asserv_manuel, bt_asserv_auto;
     private ImageButton ib_asserv_connexion;
 
     @Override
@@ -43,6 +38,9 @@ public class AutomatonAsservActivity extends AppCompatActivity {
 
         tv_asserv_niveauEau = (TextView)findViewById(R.id.tv_asserv_niveauEau);
         tv_asserv_PLCnumber = (TextView)findViewById(R.id.tv_asserv_PLCnumber);
+        tv_asserv_consigneAuto = (TextView)findViewById(R.id.tv_asserv_consAuto);
+        tv_asserv_consigneManuel = (TextView)findViewById(R.id.tv_asserv_consManuel);
+        tv_asserv_motPilotageVanne = (TextView) findViewById(R.id.tv_asserv_motPilotageVanne);
         cb_asserv_valve1 = (CheckBox)findViewById(R.id.cb_asserv_valve1);
         cb_asserv_valve2 = (CheckBox)findViewById(R.id.cb_asserv_valve2);
         cb_asserv_valve3 = (CheckBox)findViewById(R.id.cb_asserv_valve3);
@@ -67,8 +65,9 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Connecté en : " + network.getTypeName(), Toast.LENGTH_SHORT).show();
 
                         try{
-                            readS7 = new ReadTaskS7(v, tv_asserv_PLCnumber, tv_asserv_niveauEau, cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3,
-                                    cb_asserv_valve4, bt_asserv_manuel, bt_asserv_auto, ib_asserv_connexion,2);
+                            readS7 = new ReadTaskS7(v, tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel,
+                                    tv_asserv_motPilotageVanne, cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4,
+                                    bt_asserv_manuel, bt_asserv_auto, ib_asserv_connexion,2);
                             readS7.Start(Configs.getIp(), Integer.toString(Configs.getRack()), Integer.toString(Configs.getSlot()));
 
                             ib_asserv_connexion.setBackgroundColor(getResources().getColor(R.color.green));

@@ -42,14 +42,9 @@ public class ReadTaskS7
     private ImageButton ib_comp_connexion;
 
     //Pour l'asservissement de niveau
-    private TextView tv_asserv_PLCnumber;
-    private TextView tv_asserv_niveauEau;
-    private CheckBox cb_asserv_valve1;
-    private CheckBox cb_asserv_valve2;
-    private CheckBox cb_asserv_valve3;
-    private CheckBox cb_asserv_valve4;
-    private Button bt_asserv_manuel;
-    private Button bt_asserv_auto;
+    private TextView tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel, tv_asserv_motPilotageVanne;
+    private CheckBox cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4;
+    private Button bt_asserv_manuel, bt_asserv_auto;
     private ImageButton ib_asserv_connexion;
 
     private View vi_ui;
@@ -97,12 +92,16 @@ public class ReadTaskS7
     }
 
     //Constructeur pour l'asservissement
-    public ReadTaskS7(View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2,
-                      CheckBox cb_asserv_valve3, CheckBox cb_asserv_valve4, Button bt_asserv_manuel, Button bt_asserv_auto, ImageButton ib_asserv_connexion, int numAutomate)
+    public ReadTaskS7(View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, TextView tv_asserv_consigneAuto, TextView tv_asserv_consigneManuel,
+                      TextView tv_asserv_motPilotageVanne, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2, CheckBox cb_asserv_valve3,
+                      CheckBox cb_asserv_valve4, Button bt_asserv_manuel, Button bt_asserv_auto, ImageButton ib_asserv_connexion, int numAutomate)
     {
         this.vi_ui = vi_ui;
         this.tv_asserv_PLCnumber = tv_asserv_PLCnumber;
         this.tv_asserv_niveauEau = tv_asserv_niveauEau;
+        this.tv_asserv_consigneAuto = tv_asserv_consigneAuto;
+        this.tv_asserv_consigneManuel = tv_asserv_consigneManuel;
+        this.tv_asserv_motPilotageVanne = tv_asserv_motPilotageVanne;
         this.cb_asserv_valve1 = cb_asserv_valve1;
         this.cb_asserv_valve2 = cb_asserv_valve2;
         this.cb_asserv_valve3 = cb_asserv_valve3;
@@ -226,6 +225,14 @@ public class ReadTaskS7
             //Niveau d'eau
             tv_asserv_niveauEau.setText(S7.GetWordAt(datasPLC, 16) + "");
 
+            //Consigne auto
+            tv_asserv_consigneAuto.setText(S7.GetWordAt(datasPLC,18) + "");
+
+            //Consigne manuelle
+            tv_asserv_consigneManuel.setText(S7.GetWordAt(datasPLC,20) + "");
+
+            //Mot de pilotage vanne
+            tv_asserv_motPilotageVanne.setText(S7.GetWordAt(datasPLC,22) + "");
         }
     }
 
