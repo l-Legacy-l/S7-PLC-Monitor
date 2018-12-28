@@ -52,13 +52,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Sélecteur de mode"
         android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="354dp"
-        android:layout_height="67dp"
+        android:layout_height="49dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:gravity="center"
@@ -67,14 +67,14 @@
         <Button
             android:id="@+id/bt_asserv_manuel"
             android:layout_width="123dp"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
             android:onClick="onMainClickManager"
             android:text="Manuel" />
 
         <Button
             android:id="@+id/bt_asserv_auto"
             android:layout_width="123dp"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:onClick="onMainClickManager"
             android:text="Automatique" />
@@ -95,7 +95,7 @@
             android:layout_marginLeft="15dp"
             android:onClick="onMainClickManager"
             android:text="Valve 1 (principal)"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <CheckBox
             android:id="@+id/cb_asserv_valve2"
@@ -105,7 +105,7 @@
             android:layout_marginRight="0dp"
             android:onClick="onMainClickManager"
             android:text="Valve 2"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -123,23 +123,23 @@
             android:layout_marginLeft="15dp"
             android:onClick="onMainClickManager"
             android:text="Valve 3"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <CheckBox
             android:id="@+id/cb_asserv_valve4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="124dp"
+            android:layout_marginLeft="115dp"
             android:layout_marginRight="0dp"
             android:onClick="onMainClickManager"
             android:text="Valve 4"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="355dp"
-        android:layout_height="26dp"
+        android:layout_height="24dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
@@ -149,15 +149,79 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Niveau d'eau: "
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_asserv_niveauEau"
-            android:layout_width="32dp"
+            android:layout_width="38dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consigne auto: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_asserv_consAuto"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="112dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Consigne manuelle: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_asserv_consManuel"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mot de pilotage vanne: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_asserv_motPilotageVanne"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ImageButton
