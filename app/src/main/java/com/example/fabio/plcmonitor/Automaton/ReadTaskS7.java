@@ -32,13 +32,9 @@ public class ReadTaskS7
     private AtomicBoolean isRunning = new AtomicBoolean(false);
 
     //Pour les comprimés
-    private TextView tv_comp_plcNumber;
-    private TextView tv_comp_nbBouteille;
-    private CheckBox cb_comp_service;
-    private CheckBox cb_comp_flacon;
-    private Button bt_comp_5;
-    private Button bt_comp_10;
-    private Button bt_comp_15;
+    private TextView tv_comp_plcNumber, tv_comp_nbBouteille, tv_comp_nbFlacon;
+    private CheckBox cb_comp_service, cb_comp_flacon;
+    private Button bt_comp_5, bt_comp_10, bt_comp_15;
     private ImageButton ib_comp_connexion;
 
     //Pour l'asservissement de niveau
@@ -64,21 +60,22 @@ public class ReadTaskS7
     //Tableaux contenant les paramètres de connexion et permettant les échanges avec l’automate
     private String[] param = new String[10];
 
-    private byte[] datasPLC = new byte[512];
+    private byte[] datasPLC = new byte[512], pillsPLC = new byte[2];
 
     //Variable permettant de déterminer si l'utilisateur est connecté à l'automate
     public boolean isConnected= false;
 
     //Constructeur ReadTaskS7 pour les comprimés
-    public ReadTaskS7(View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
+    public ReadTaskS7(View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, TextView tv_comp_nbFlacon, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
                       Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion, int numAutomate)
     {
         //Objets modifiés par la tâche de fond
         this.vi_ui = vi_ui;
         this.tv_comp_plcNumber = tv_comp_plcNumber;
         this.tv_comp_nbBouteille = tv_comp_nbBouteille;
+        this.tv_comp_nbFlacon = tv_comp_nbFlacon;
         this.cb_comp_service = cb_comp_service;
-        this.cb_comp_flacon = cb_comp_service;
+        this.cb_comp_flacon = cb_comp_flacon;
         this.bt_comp_5 = bt_comp_5;
         this.bt_comp_10 = bt_comp_10;
         this.bt_comp_15 = bt_comp_15;
@@ -239,6 +236,24 @@ public class ReadTaskS7
     //Après le traitement de la tâche de fond
     private void downloadOnPostExecute() {
         Toast.makeText(vi_ui.getContext(), "Vous avez été déconnecté de l'automate", Toast.LENGTH_LONG).show();
+
+        if(numAutomate == 1)
+        {
+
+        }
+        else
+        {
+            bt_asserv_manuel.getBackground().clearColorFilter();
+            bt_asserv_auto.getBackground().clearColorFilter();
+            cb_asserv_valve1.setChecked(false);
+            cb_asserv_valve2.setChecked(false);
+            cb_asserv_valve3.setChecked(false);
+            cb_asserv_valve4.setChecked(false);
+            tv_asserv_niveauEau.setText("");
+            tv_asserv_consigneAuto.setText("");
+            tv_asserv_consigneManuel.setText("");
+            tv_asserv_motPilotageVanne.setText("");
+        }
     }
 
     //Handler -> gestion des différents messages envoyés au thread

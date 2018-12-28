@@ -23,15 +23,10 @@ public class AutomatonCompActivity extends AppCompatActivity
     private NetworkInfo network;
     private ConnectivityManager statusConnexion;
 
-    private TextView tv_comp_PLCnumber;
-    private TextView tv_comp_nbBouteille;
-    private CheckBox cb_comp_service;
-    private CheckBox cb_comp_flacon;
-    private Button bt_comp_5;
-    private Button bt_comp_10;
-    private Button bt_comp_15;
+    private TextView tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon;
+    private CheckBox cb_comp_service, cb_comp_flacon;
+    private Button bt_comp_5, bt_comp_10, bt_comp_15;
     private ImageButton ib_comp_connexion;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +39,7 @@ public class AutomatonCompActivity extends AppCompatActivity
 
         tv_comp_PLCnumber = (TextView)findViewById(R.id.tv_comp_PLCnumber);
         tv_comp_nbBouteille = (TextView)findViewById(R.id.tv_comp_nbBouteille);
+        tv_comp_nbFlacon = (TextView)findViewById(R.id.tv_comp_nbFlacon);
         cb_comp_service = (CheckBox)findViewById(R.id.cb_comp_service);
         cb_comp_flacon = (CheckBox)findViewById(R.id.cb_comp_flacon);
         bt_comp_5 = (Button)findViewById(R.id.bt_comp_5);
@@ -67,8 +63,8 @@ public class AutomatonCompActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "Connecté en : " + network.getTypeName(), Toast.LENGTH_SHORT).show();
 
                         try{
-                            readS7 = new ReadTaskS7(v, tv_comp_PLCnumber, tv_comp_nbBouteille, cb_comp_service, cb_comp_flacon, bt_comp_5,
-                                    bt_comp_10, bt_comp_15, ib_comp_connexion,1);
+                            readS7 = new ReadTaskS7(v, tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon, cb_comp_service, cb_comp_flacon,
+                                    bt_comp_5, bt_comp_10, bt_comp_15, ib_comp_connexion,1);
                             readS7.Start(Configs.getIp(), Integer.toString(Configs.getRack()), Integer.toString(Configs.getSlot()));
 
                             ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.green));
