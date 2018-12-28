@@ -1,5 +1,7 @@
 package com.example.fabio.plcmonitor.Automaton;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -10,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fabio.plcmonitor.Activity.AutomatonAsservActivity;
+import com.example.fabio.plcmonitor.Activity.AutomatonCompActivity;
 import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
 import com.example.fabio.plcmonitor.SimaticS7.S7;
@@ -159,6 +163,70 @@ public class ReadTaskS7
 
     //Mise à jour durant le traitement
     private void downloadOnProgressUpdate(int progress) {
+        //Automate comprimé
+        if(numAutomate == 1)
+        {
+
+        }
+        //Automate asservissement
+        else
+        {
+            //Selecteur de mode manuel/auto
+            if(S7.GetBitAt(datasPLC,0,5))
+            {
+                bt_asserv_auto.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                bt_asserv_manuel.getBackground().clearColorFilter();
+            }
+            else
+            {
+                bt_asserv_manuel.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                bt_asserv_auto.getBackground().clearColorFilter();
+            }
+
+            //Valve 1
+            if(S7.GetBitAt(datasPLC,0,1))
+            {
+                cb_asserv_valve1.setChecked(true);
+            }
+            else
+            {
+                cb_asserv_valve1.setChecked(false);
+            }
+
+            //Valve 2
+            if(S7.GetBitAt(datasPLC,0,2))
+            {
+                cb_asserv_valve2.setChecked(true);
+            }
+            else
+            {
+                cb_asserv_valve2.setChecked(false);
+            }
+
+            //Valve 3
+            if(S7.GetBitAt(datasPLC,0,3))
+            {
+                cb_asserv_valve3.setChecked(true);
+            }
+            else
+            {
+                cb_asserv_valve3.setChecked(false);
+            }
+
+            //Valve 4
+            if(S7.GetBitAt(datasPLC,0,4))
+            {
+                cb_asserv_valve4.setChecked(true);
+            }
+            else
+            {
+                cb_asserv_valve4.setChecked(false);
+            }
+
+            //Niveau d'eau
+            tv_asserv_niveauEau.setText(S7.GetWordAt(datasPLC, 16) + "");
+
+        }
     }
 
     //Après le traitement de la tâche de fond
