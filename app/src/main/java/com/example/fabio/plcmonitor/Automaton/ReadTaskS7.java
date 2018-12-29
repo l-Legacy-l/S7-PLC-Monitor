@@ -158,10 +158,58 @@ public class ReadTaskS7
     }
 
     //Mise à jour durant le traitement
-    private void downloadOnProgressUpdate(int progress) {
+    private void downloadOnProgressUpdate(int nbFlacon) {
         //Automate comprimé
         if(numAutomate == 1)
         {
+            //Selecteur en service
+            if(S7.GetBitAt(datasPLC,0,0))
+            {
+                cb_comp_service.setChecked(true);
+            }
+            else
+            {
+                cb_comp_service.setChecked(false);
+            }
+
+            //Arrivée des flacons vides
+            if(S7.GetBitAt(datasPLC,1,3))
+            {
+                cb_comp_flacon.setChecked(true);
+            }
+            else
+            {
+                cb_comp_flacon.setChecked(false);
+            }
+
+            //Demande de 5 comprimés
+            if(S7.GetBitAt(datasPLC,4,3))
+            {
+                bt_comp_5.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                bt_comp_10.getBackground().clearColorFilter();
+                bt_comp_15.getBackground().clearColorFilter();
+
+            }
+            //Demande de 10 comprimés
+            if (S7.GetBitAt(datasPLC,4,4))
+            {
+                bt_comp_10.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                bt_comp_5.getBackground().clearColorFilter();
+                bt_comp_15.getBackground().clearColorFilter();
+            }
+            //Demande de 15 comprimés
+            if (S7.GetBitAt(datasPLC,4,5))
+            {
+                bt_comp_15.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                bt_comp_10.getBackground().clearColorFilter();
+                bt_comp_5.getBackground().clearColorFilter();
+            }
+
+            //Comprimés mis en flacon
+            tv_comp_nbFlacon.setText(String.valueOf(nbFlacon) + "");
+
+            //Bouteille remplies
+            tv_comp_nbBouteille.setText(String.valueOf(S7.GetWordAt(datasPLC, 16) +""));
 
         }
         //Automate asservissement
@@ -239,7 +287,14 @@ public class ReadTaskS7
 
         if(numAutomate == 1)
         {
-
+            tv_comp_nbBouteille.setText("");
+            tv_comp_nbFlacon.setText("");
+            tv_comp_plcNumber.setText("");
+            cb_comp_service.setChecked(false);
+            cb_comp_flacon.setChecked(false);
+            bt_comp_5.getBackground().clearColorFilter();
+            bt_comp_10.getBackground().clearColorFilter();
+            bt_comp_15.getBackground().clearColorFilter();
         }
         else
         {
@@ -253,6 +308,7 @@ public class ReadTaskS7
             tv_asserv_consigneAuto.setText("");
             tv_asserv_consigneManuel.setText("");
             tv_asserv_motPilotageVanne.setText("");
+            tv_asserv_PLCnumber.setText("");
         }
     }
 
@@ -308,6 +364,8 @@ public class ReadTaskS7
                 {
                     if(res.equals(0)){
                         int retInfo = comS7.ReadArea(S7.S7AreaDB, databloc,0,32,datasPLC);
+                        int pillsRead = comS7.ReadArea(S7.S7AreaDB, databloc,15,2, pillsPLC);
+                        int pills;
                         int data = 0;
 
                         if( retInfo == 0){
@@ -315,6 +373,12 @@ public class ReadTaskS7
                             data = S7.GetWordAt(datasPLC,0);
                             //On transfert la valeur à l'UI
                             sendProgressMessage(data);
+                        }
+
+                        if(pillsRead == 0)
+                        {
+                            pills = S7.BCDtoByte(pillsPLC[0]);
+                            sendProgressMessage(pills);
                         }
                         Log.i("Variable A.P.I. ->",String.valueOf(data));
                     }
