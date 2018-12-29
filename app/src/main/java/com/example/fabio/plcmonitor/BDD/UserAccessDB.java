@@ -25,8 +25,10 @@ public class UserAccessDB {
     private static final int NUM_COL_NOM = 3;
     private static final String COL_PRENOM = "PRENOM";
     private static final int NUM_COL_PRENOM = 4;
+    private static final String COL_WRITE = "WRITE";
+    private static final int NUM_COL_WRITE = 5;
     private static final String COL_ADMIN = "ADMIN";
-    private static final int NUM_COL_ADMIN = 5;
+    private static final int NUM_COL_ADMIN = 6;
 
     private SQLiteDatabase db;
     private UserBddSqlite userDb;
@@ -45,6 +47,7 @@ public class UserAccessDB {
         content.put(COL_PRENOM, u.getPrenom());
         content.put(COL_PASSWORD, u.getMdp());
         content.put(COL_EMAIL, u.getEmail());
+        content.put(COL_WRITE, u.getWriteAccess());
         content.put(COL_ADMIN, u.getIsAdmin());
 
         return db.insert(TABLE_USER, null, content);
@@ -59,6 +62,7 @@ public class UserAccessDB {
         content.put(COL_PASSWORD, u.getMdp());
         content.put(COL_NOM, u.getNom());
         content.put(COL_PRENOM, u.getPrenom());
+        content.put(COL_WRITE, u.getWriteAccess());
         content.put(COL_ADMIN, u.getIsAdmin());
 
         return db.update(TABLE_USER, content, COL_ID + " = " + i, null);
@@ -72,7 +76,7 @@ public class UserAccessDB {
 
     public ArrayList<User> getAllUser(){
         Cursor c = db.query(TABLE_USER, new String[]{
-                COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_ADMIN},
+                COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_WRITE, COL_ADMIN},
                 null, null, null, null, null,null);
 
         ArrayList<User> tabUser = new ArrayList<User>();
@@ -88,6 +92,15 @@ public class UserAccessDB {
             user1.setMdp(c.getString(NUM_COL_PASSWORD));
             user1.setNom(c.getString(NUM_COL_NOM));
             user1.setPrenom(c.getString(NUM_COL_PRENOM));
+
+            if(c.getInt(NUM_COL_WRITE) == 1)
+            {
+                user1.setWriteAccess(true);
+            }
+            else
+            {
+                user1.setWriteAccess(false);
+            }
 
             if(c.getInt(NUM_COL_ADMIN) == 1)
             {
@@ -106,7 +119,7 @@ public class UserAccessDB {
 
     public User getUser (String email)
     {
-        Cursor c = db.query(TABLE_USER, new String[]{COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_ADMIN},
+        Cursor c = db.query(TABLE_USER, new String[]{COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_WRITE, COL_ADMIN},
                 COL_EMAIL + " LIKE \"" + email + "\"", null, null, null, COL_EMAIL);
 
         //Si pas de résultat
@@ -125,6 +138,15 @@ public class UserAccessDB {
         user1.setPrenom(c.getString(NUM_COL_PRENOM));
         user1.setMdp(c.getString(NUM_COL_PASSWORD));
 
+        if(c.getInt(NUM_COL_WRITE) == 1)
+        {
+            user1.setWriteAccess(true);
+        }
+        else
+        {
+            user1.setWriteAccess(false);
+        }
+
         if(c.getInt(NUM_COL_ADMIN) == 1)
         {
             user1.setIsAdmin(true);
@@ -136,7 +158,5 @@ public class UserAccessDB {
         c.close();
 
         return user1;
-
     }
-
 }

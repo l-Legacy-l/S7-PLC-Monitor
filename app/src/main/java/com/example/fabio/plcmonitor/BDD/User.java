@@ -3,20 +3,17 @@ package com.example.fabio.plcmonitor.BDD;
 public class User {
 
     private int id;
-
-    private String nom;
-    private String prenom;
-    private String email;
-    private String mdp;
-    private boolean isAdmin;
+    private String nom, prenom, email, mdp;
+    private boolean writeAccess, isAdmin;
 
     public User() {}
 
-    public User(String nom,String prenom, String email, String mdp, boolean isAdmin){
+    public User(String nom,String prenom, String email, String mdp,boolean writeAccess, boolean isAdmin){
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
+        this.writeAccess = writeAccess;
         this.isAdmin = isAdmin;
     }
 
@@ -34,6 +31,9 @@ public class User {
 
     public String getMdp(){return mdp;}
     public void setMdp(String mdp){this.mdp = mdp;}
+
+    public boolean getWriteAccess() { return writeAccess; }
+    public void setWriteAccess(boolean writeAccess) { this.writeAccess = writeAccess; }
 
     public boolean getIsAdmin(){return isAdmin;}
     public void setIsAdmin(boolean isAdmin){this.isAdmin = isAdmin;}

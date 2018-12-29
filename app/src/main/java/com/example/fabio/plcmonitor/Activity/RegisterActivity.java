@@ -43,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
                 //Si le mot de passe contient 4 caractères au minimum
                 if(mdp.length() >= 4)
                 {
-                    //On peut créer l'utilisateur
+                    //On peut créer l'utilisateur, par défaut accès uniquement en lecture et pas administrateur
                     User user = new User(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
-                            mdp.getText().toString(),false);
+                            mdp.getText().toString(),false,false);
 
                     UserAccessDB userDB = new UserAccessDB(this);
                     userDB.openForWrite();
