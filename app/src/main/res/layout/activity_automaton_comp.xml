@@ -1,171 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.AutomatonCompActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Comprimés"
-        android:textSize="30sp" />
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activity.AutomatonCompActivity">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PLC :  "
+            android:layout_gravity="center"
+            android:text="Comprimés"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PLC :  "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_comp_PLCnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="319dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#808080" />
+
+        <CheckBox
+            android:id="@+id/cb_comp_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onMainClickManager"
+            android:text="Selecteur en service"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cb_comp_flacon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:onClick="onMainClickManager"
+            android:text="Arrivée des flacons vides"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_comp_PLCnumber"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Nombre de comprimés demandés:"
             android:textSize="18sp" />
-    </LinearLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="319dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="#808080" />
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/cb_comp_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:onClick="onMainClickManager"
-        android:text="Selecteur en service"
-        android:textSize="18sp" />
+            <Button
+                android:id="@+id/bt_comp_5"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:onClick="onMainClickManager"
+                android:text="5" />
 
-    <CheckBox
-        android:id="@+id/cb_comp_flacon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:onClick="onMainClickManager"
-        android:text="Arrivée des flacons vides"
-        android:textSize="18sp" />
+            <Button
+                android:id="@+id/bt_comp_10"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="50dp"
+                android:onClick="onMainClickManager"
+                android:text="10" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Nombre de comprimés demandés:"
-        android:textSize="18sp" />
+            <Button
+                android:id="@+id/bt_comp_15"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="50dp"
+                android:onClick="onMainClickManager"
+                android:text="15" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="67dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_comp_5"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:onClick="onMainClickManager"
-            android:text="5" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Comprimés mis en flacon:  "
+                android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/bt_comp_10"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginLeft="50dp"
-            android:onClick="onMainClickManager"
-            android:text="10" />
+            <TextView
+                android:id="@+id/tv_comp_nbFlacon"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/bt_comp_15"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginLeft="50dp"
-            android:onClick="onMainClickManager"
-            android:text="15" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="197dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bouteille remplies: "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_comp_nbBouteille"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
+
+
+            <Button
+                android:id="@+id/bt_comp_ecrire"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal|center"
+                android:text="Écrire"
+                android:onClick="onMainClickManager"
+                />
+
+            <ImageButton
+                android:id="@+id/ib_comp_connexion"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal|center"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/red"
+                android:onClick="onMainClickManager"
+                app:srcCompat="@android:drawable/ic_lock_power_off" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_comp_layoutEcriture"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Comprimés mis en flacon:  "
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_comp_nbFlacon"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comp_dbb5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB5 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_comp_saveDBB5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comp_dbb6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB6 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_comp_saveDBB6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comp_dbb7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB7 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_comp_saveDBB7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comp_dbb8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB8 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_comp_saveDBB8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comp_dbb18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB18 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_comp_saveDBB18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="197dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bouteille remplies: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_comp_nbBouteille"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/ib_comp_connexion"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="65dp"
-        android:background="@color/red"
-        android:clickable="false"
-        android:onClick="onMainClickManager"
-        app:srcCompat="@android:drawable/ic_lock_power_off"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="95dp" />
-
-</LinearLayout>
+</ScrollView>
