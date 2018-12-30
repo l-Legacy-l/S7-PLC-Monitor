@@ -314,16 +314,16 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_comp_dbb18"
+                    android:id="@+id/et_comp_dbw18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="DBB18 (Entier)"
+                    android:hint="DBW18 (Entier)"
                     android:inputType="number" />
 
                 <Button
-                    android:id="@+id/bt_comp_saveDBB18"
+                    android:id="@+id/bt_comp_saveDBW18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"

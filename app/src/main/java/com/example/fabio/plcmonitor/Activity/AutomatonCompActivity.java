@@ -9,25 +9,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.Automaton.ReadTaskS7;
+import com.example.fabio.plcmonitor.Automaton.WriteTaskS7;
 import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
 
 public class AutomatonCompActivity extends AppCompatActivity
 {
     private ReadTaskS7 readS7;
+    private WriteTaskS7 writeS7;
     private NetworkInfo network;
     private ConnectivityManager statusConnexion;
+
+    private String ip = Configs.getIp();
+    private String rack = Integer.toString(Configs.getRack());
+    private String slot = Integer.toString(Configs.getSlot());
 
     private TextView tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon;
     private CheckBox cb_comp_service, cb_comp_flacon;
     private Button bt_comp_5, bt_comp_10, bt_comp_15, bt_comp_ecrire;
     private ImageButton ib_comp_connexion;
+    private EditText et_comp_dbb5, et_comp_dbb6, et_comp_dbb7, et_comp_dbb8, et_comp_dbw18;
     private LinearLayout ll_comp_layoutEcriture;
 
     @Override
@@ -50,6 +58,11 @@ public class AutomatonCompActivity extends AppCompatActivity
         bt_comp_ecrire = (Button) findViewById(R.id.bt_comp_ecrire);
         ib_comp_connexion = (ImageButton)findViewById(R.id.ib_comp_connexion);
         ll_comp_layoutEcriture = (LinearLayout) findViewById(R.id.ll_comp_layoutEcriture);
+        et_comp_dbb5 = (EditText) findViewById(R.id.et_comp_dbb5);
+        et_comp_dbb6 = (EditText) findViewById(R.id.et_comp_dbb6);
+        et_comp_dbb7 = (EditText) findViewById(R.id.et_comp_dbb7);
+        et_comp_dbb8 = (EditText) findViewById(R.id.et_comp_dbb8);
+        et_comp_dbw18 = (EditText) findViewById(R.id.et_comp_dbw18);
     }
 
     public void onMainClickManager(View v)
@@ -69,7 +82,10 @@ public class AutomatonCompActivity extends AppCompatActivity
                         try{
                             readS7 = new ReadTaskS7(v, tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon, cb_comp_service, cb_comp_flacon,
                                     bt_comp_5, bt_comp_10, bt_comp_15, ib_comp_connexion,1);
-                            readS7.Start(Configs.getIp(), Integer.toString(Configs.getRack()), Integer.toString(Configs.getSlot()));
+                            readS7.Start(ip,rack,slot);
+
+                            writeS7 = new WriteTaskS7();
+                            writeS7.Start(ip,rack,slot);
 
                             ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.green));
 
@@ -90,9 +106,6 @@ public class AutomatonCompActivity extends AppCompatActivity
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        //writeS7 = new WriteTaskS7();
-                        //writeS7.Start(Globals.getIp(), Globals.getRack(), Globals.getSlot());
-
                     }
                     else
                     {
@@ -118,6 +131,67 @@ public class AutomatonCompActivity extends AppCompatActivity
                 else
                 {
                     ll_comp_layoutEcriture.setVisibility(View.GONE);
+                }
+             break;
+
+            case R.id.bt_comp_saveDBB5:
+                if(!et_comp_dbb5.getText().toString().isEmpty())
+                {
+                    writeS7.setWriteBool(5, et_comp_dbb5.getText().toString());
+                    Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir le champ", Toast.LENGTH_SHORT).show();
+                }
+             break;
+
+            case R.id.bt_comp_saveDBB6:
+                if(!et_comp_dbb5.getText().toString().isEmpty())
+                {
+                    writeS7.setWriteBool(6, et_comp_dbb6.getText().toString());
+                    Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir le champ", Toast.LENGTH_SHORT).show();
+                }
+             break;
+
+            case R.id.bt_comp_saveDBB7:
+                if(!et_comp_dbb7.getText().toString().isEmpty())
+                {
+                    writeS7.setWriteBool(7, et_comp_dbb7.getText().toString());
+                    Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir le champ", Toast.LENGTH_SHORT).show();
+                }
+
+             break;
+
+            case R.id.bt_comp_saveDBB8:
+                if(!et_comp_dbb8.getText().toString().isEmpty())
+                {
+                    writeS7.setWriteByte(et_comp_dbb8.getText().toString());
+                    Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir le champ", Toast.LENGTH_SHORT).show();
+                }
+             break;
+
+            case R.id.bt_comp_saveDBW18:
+                if(!et_comp_dbw18.getText().toString().isEmpty())
+                {
+                    writeS7.setWriteInt(et_comp_dbw18.getText().toString());
+                    Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir le champ", Toast.LENGTH_SHORT).show();
                 }
              break;
         }
