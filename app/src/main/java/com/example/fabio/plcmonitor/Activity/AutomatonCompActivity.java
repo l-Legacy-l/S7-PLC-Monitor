@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,9 @@ public class AutomatonCompActivity extends AppCompatActivity
 
     private TextView tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon;
     private CheckBox cb_comp_service, cb_comp_flacon;
-    private Button bt_comp_5, bt_comp_10, bt_comp_15;
+    private Button bt_comp_5, bt_comp_10, bt_comp_15, bt_comp_ecrire;
     private ImageButton ib_comp_connexion;
+    private LinearLayout ll_comp_layoutEcriture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,7 +47,9 @@ public class AutomatonCompActivity extends AppCompatActivity
         bt_comp_5 = (Button)findViewById(R.id.bt_comp_5);
         bt_comp_10 = (Button)findViewById(R.id.bt_comp_10);
         bt_comp_15 = (Button)findViewById(R.id.bt_comp_15);
+        bt_comp_ecrire = (Button) findViewById(R.id.bt_comp_ecrire);
         ib_comp_connexion = (ImageButton)findViewById(R.id.ib_comp_connexion);
+        ll_comp_layoutEcriture = (LinearLayout) findViewById(R.id.ll_comp_layoutEcriture);
     }
 
     public void onMainClickManager(View v)
@@ -102,6 +106,20 @@ public class AutomatonCompActivity extends AppCompatActivity
                     ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.red));
                     readS7.Stop();
                 }
+
+             break;
+
+            case R.id.bt_comp_ecrire:
+                //Si le layout n'est pas déjà affiché, on l'affiche, sinon on le cache
+                if(ll_comp_layoutEcriture.getVisibility() == View.GONE)
+                {
+                    ll_comp_layoutEcriture.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    ll_comp_layoutEcriture.setVisibility(View.GONE);
+                }
+             break;
         }
     }
 }
