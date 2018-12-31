@@ -1,238 +1,431 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.AutomatonAsservActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Asservissement"
-        android:textSize="30sp" />
-
-    <LinearLayout
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activity.AutomatonAsservActivity">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PLC :  "
-            android:textSize="18sp" />
+            android:layout_gravity="center"
+            android:text="Asservissement"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PLC :  "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_asserv_PLCnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="319dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#808080" />
 
         <TextView
-            android:id="@+id/tv_asserv_PLCnumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="319dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="#808080" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Sélecteur de mode"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="49dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/bt_asserv_manuel"
-            android:layout_width="123dp"
-            android:layout_height="wrap_content"
-            android:onClick="onMainClickManager"
-            android:text="Manuel" />
-
-        <Button
-            android:id="@+id/bt_asserv_auto"
-            android:layout_width="123dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:onClick="onMainClickManager"
-            android:text="Automatique" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/cb_asserv_valve1"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:onClick="onMainClickManager"
-            android:text="Valve 1 (principal)"
-            android:textSize="16sp" />
+            android:layout_marginTop="15dp"
+            android:text="Sélecteur de mode"
+            android:textSize="18sp" />
 
-        <CheckBox
-            android:id="@+id/cb_asserv_valve2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="0dp"
-            android:onClick="onMainClickManager"
-            android:text="Valve 2"
-            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/bt_asserv_manuel"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:onClick="onMainClickManager"
+                android:text="Manuel" />
 
-    <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_asserv_auto"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:onClick="onMainClickManager"
+                android:text="Automatique" />
 
-        <CheckBox
-            android:id="@+id/cb_asserv_valve3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_asserv_valve1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:onClick="onMainClickManager"
+                android:text="Valve 1 (principal)"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/cb_asserv_valve2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="0dp"
+                android:onClick="onMainClickManager"
+                android:text="Valve 2"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_asserv_valve3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:onClick="onMainClickManager"
+                android:text="Valve 3"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/cb_asserv_valve4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="115dp"
+                android:layout_marginRight="0dp"
+                android:onClick="onMainClickManager"
+                android:text="Valve 4"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="355dp"
+            android:layout_height="24dp"
             android:layout_marginLeft="15dp"
-            android:onClick="onMainClickManager"
-            android:text="Valve 3"
-            android:textSize="16sp" />
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_asserv_valve4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
-            android:layout_marginRight="0dp"
-            android:onClick="onMainClickManager"
-            android:text="Valve 4"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niveau d'eau: "
+                android:textSize="16sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_asserv_niveauEau"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="355dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Niveau d'eau: "
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consigne auto: "
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_asserv_niveauEau"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_asserv_consAuto"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consigne manuelle: "
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Consigne auto: "
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_asserv_consManuel"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_asserv_consAuto"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Consigne manuelle: "
-            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_asserv_consManuel"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mot de pilotage vanne: "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_asserv_motPilotageVanne"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
             android:layout_weight="1"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
 
+
+            <Button
+                android:id="@+id/bt_asserv_ecrire"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal|center"
+                android:text="Écrire"
+                android:visibility="gone"
+                android:onClick="onMainClickManager"
+                />
+
+            <ImageButton
+                android:id="@+id/ib_asserv_connexion"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal|center"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/red"
+                android:onClick="onMainClickManager"
+                app:srcCompat="@android:drawable/ic_lock_power_off" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_asserv_layoutEcriture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB2 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBB2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBB3 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBB3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbw24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBW24 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBW24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbw26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBW26 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBW26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbw28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBW28 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBW28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="319dp"
+                android:layout_height="67dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_asserv_dbw30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DBW30 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/bt_asserv_saveDBW30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:onClick="onMainClickManager"
+                    android:text="Enregistrer" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mot de pilotage vanne: "
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_asserv_motPilotageVanne"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/ib_asserv_connexion"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="110dp"
-        android:background="@color/red"
-        android:clickable="false"
-        android:onClick="onMainClickManager"
-        app:srcCompat="@android:drawable/ic_lock_power_off"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="95dp" />
-</LinearLayout>
+</ScrollView>

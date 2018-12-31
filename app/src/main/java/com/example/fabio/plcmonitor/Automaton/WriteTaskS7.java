@@ -17,14 +17,16 @@ public class WriteTaskS7
     private String[] parConnexion = new String[10];
     private byte[] motCommande = new byte[10];
     private Integer databloc = Configs.getDatablock();
-    private byte[] dbb5 = new byte[2], dbb6 = new byte[2];
-    private byte[] dbb7 = new byte[2], dbb8 = new byte[2], dbw18 = new byte[2];
+    private byte[] dbb5 = new byte[2], dbb6 = new byte[2], dbb7 = new byte[2], dbb8 = new byte[2], dbw18 = new byte[2],
+                   dbb2 = new byte[2], dbb3 = new byte[2], dbw24 = new byte[2], dbw26 = new byte[2], dbw28 = new byte[2], dbw30 = new byte[2];
+    private int numAutomate;
 
-    public WriteTaskS7()
+    public WriteTaskS7(int numAutomate)
     {
         comS7 = new S7Client();
         plcS7 = new AutomateS7();
         writeThread = new Thread(plcS7);
+        this.numAutomate = numAutomate;
     }
 
     public void Start(String ip, String rack, String slot){
@@ -53,11 +55,23 @@ public class WriteTaskS7
 
                 while (isRunning.get() && (res.equals(0)))
                 {
-                    comS7.WriteArea(S7.S7AreaDB, databloc, 5, 2, dbb5);
-                    comS7.WriteArea(S7.S7AreaDB, databloc, 6, 2, dbb6);
-                    comS7.WriteArea(S7.S7AreaDB, databloc, 7, 2, dbb7);
-                    comS7.WriteArea(S7.S7AreaDB, databloc, 8, 2, dbb8);
-                    comS7.WriteArea(S7.S7AreaDB, databloc, 18, 2, dbw18);
+                    if(numAutomate == 0)
+                    {
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 5, 2, dbb5);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 6, 2, dbb6);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 7, 2, dbb7);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 8, 2, dbb8);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 18, 2, dbw18);
+                    }
+                    else
+                    {
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 2, 2, dbb2);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 3, 2, dbb3);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 24, 2, dbw24);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 26, 2, dbw26);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 28, 2, dbw28);
+                        comS7.WriteArea(S7.S7AreaDB, databloc, 30, 2, dbw30);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -73,7 +87,15 @@ public class WriteTaskS7
         boolean isTrue;
         byte[] chosenDBB;
 
-        if (dbb == 5)
+        if(dbb == 2)
+        {
+            chosenDBB = dbb2;
+        }
+        else if (dbb ==3)
+        {
+            chosenDBB = dbb3;
+        }
+        else if (dbb == 5)
         {
             chosenDBB = dbb5;
         }
@@ -81,7 +103,6 @@ public class WriteTaskS7
         {
             chosenDBB = dbb6;
         }
-
         else
         {
             chosenDBB = dbb7;
@@ -108,8 +129,30 @@ public class WriteTaskS7
     }
 
     //Ecrit la valeur donnée sous forme d'entier dans l'automate
-    public void setWriteInt(String value)
+    public void setWriteInt(int dbw, String value)
     {
-        S7.SetWordAt(dbw18, 0, Integer.parseInt(value));
+        byte[] chosenDBW;
+        if(dbw == 18)
+        {
+            chosenDBW = dbw18;
+        }
+        else if (dbw == 24)
+        {
+            chosenDBW = dbw24;
+        }
+        else if(dbw == 26)
+        {
+            chosenDBW = dbw26;
+        }
+        else if(dbw == 28)
+        {
+            chosenDBW = dbw28;
+        }
+        else
+        {
+            chosenDBW = dbw30;
+        }
+
+        S7.SetWordAt(chosenDBW, 0, Integer.parseInt(value));
     }
 }

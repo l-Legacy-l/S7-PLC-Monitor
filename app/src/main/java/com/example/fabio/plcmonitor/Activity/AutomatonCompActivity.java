@@ -63,11 +63,6 @@ public class AutomatonCompActivity extends AppCompatActivity
         et_comp_dbb7 = (EditText) findViewById(R.id.et_comp_dbb7);
         et_comp_dbb8 = (EditText) findViewById(R.id.et_comp_dbb8);
         et_comp_dbw18 = (EditText) findViewById(R.id.et_comp_dbw18);
-
-        if(Configs.getIsWriteAccess())
-        {
-            bt_comp_ecrire.setVisibility(View.VISIBLE);
-        }
     }
 
     public void onMainClickManager(View v)
@@ -89,11 +84,15 @@ public class AutomatonCompActivity extends AppCompatActivity
                                     bt_comp_5, bt_comp_10, bt_comp_15, ib_comp_connexion,1);
                             readS7.Start(ip,rack,slot);
 
-                            writeS7 = new WriteTaskS7();
+                            writeS7 = new WriteTaskS7(1);
                             writeS7.Start(ip,rack,slot);
 
                             ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.green));
 
+                            if(Configs.getIsWriteAccess())
+                            {
+                                bt_comp_ecrire.setVisibility(View.VISIBLE);
+                            }
                         }
                         catch(Exception e){
                             Toast.makeText(getApplicationContext(),"Une erreur s'est produite, veuillez recommencer", Toast.LENGTH_LONG).show();
@@ -122,6 +121,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                 {
                     //On est déjà connecté donc on veut se déconnecter
                     ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.red));
+                    bt_comp_ecrire.setVisibility(View.GONE);
                     readS7.Stop();
                 }
 
@@ -191,7 +191,7 @@ public class AutomatonCompActivity extends AppCompatActivity
             case R.id.bt_comp_saveDBW18:
                 if(!et_comp_dbw18.getText().toString().isEmpty())
                 {
-                    writeS7.setWriteInt(et_comp_dbw18.getText().toString());
+                    writeS7.setWriteInt(18,et_comp_dbw18.getText().toString());
                     Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
                 }
                 else
