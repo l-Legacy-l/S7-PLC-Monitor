@@ -63,6 +63,11 @@ public class AutomatonCompActivity extends AppCompatActivity
         et_comp_dbb7 = (EditText) findViewById(R.id.et_comp_dbb7);
         et_comp_dbb8 = (EditText) findViewById(R.id.et_comp_dbb8);
         et_comp_dbw18 = (EditText) findViewById(R.id.et_comp_dbw18);
+
+        if(Configs.getIsWriteAccess())
+        {
+            bt_comp_ecrire.setVisibility(View.VISIBLE);
+        }
     }
 
     public void onMainClickManager(View v)

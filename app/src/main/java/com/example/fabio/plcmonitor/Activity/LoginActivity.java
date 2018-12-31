@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.BDD.User;
 import com.example.fabio.plcmonitor.BDD.UserAccessDB;
+import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
 
 import java.io.Serializable;
@@ -52,11 +53,21 @@ public class LoginActivity extends AppCompatActivity {
                 if(mdp.equals(user1.getMdp()))
                 {
                     Toast.makeText(getApplicationContext(), "Bienvenue " + user1.getPrenom() + " "+user1.getNom(),Toast.LENGTH_SHORT).show();
+                    if(user1.getIsAdmin())
+                    {
+                        Configs.setIsAdmin(true);
+                    }
+                    if(user1.getWriteAccess())
+                    {
+                        Configs.setIsWriteAccess(true);
+                    }
+
                     //On est connecté, on passe à l'activité de management
                     Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
                     //On passe en paramètre l'état isAdmin à l'activité de Management
                     intent.putExtra("isAdmin", Boolean.toString(user1.getIsAdmin()));
                     startActivity(intent);
+
                 }
 
                 else

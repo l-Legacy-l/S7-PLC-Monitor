@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.BDD.User;
 import com.example.fabio.plcmonitor.BDD.UserAccessDB;
+import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
 
 import java.util.ArrayList;
@@ -115,10 +116,12 @@ public class ManagementUserActivity extends AppCompatActivity {
                 if(switchAdmin.isChecked())
                 {
                     user1.setIsAdmin(true);
+                    Configs.setIsAdmin(true);
                 }
                 else
                 {
                     user1.setIsAdmin(false);
+                    Configs.setIsAdmin(false);
                 }
                 //On met à jour l'user dans la BDD
                 db.openForWrite();
@@ -134,10 +137,12 @@ public class ManagementUserActivity extends AppCompatActivity {
                 if(switchWrite.isChecked())
                 {
                     user2.setWriteAccess(true);
+                    Configs.setIsWriteAccess(true);
                 }
                 else
                 {
                     user2.setWriteAccess(false);
+                    Configs.setIsWriteAccess(false);
                 }
                 //On met à jour l'user dans la BDD
                 db.openForWrite();

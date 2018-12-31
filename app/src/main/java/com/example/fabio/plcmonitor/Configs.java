@@ -6,6 +6,8 @@ public class Configs
     static int rack = 0;
     static int slot = 2;
     static int datablock = 5;
+    static boolean isWriteAccess = false;
+    static boolean isAdmin = false;
 
     public static String getIp() {
         return ip;
@@ -37,4 +39,17 @@ public class Configs
     public static void setDatablock(int datablock) {
         Configs.datablock = datablock;
     }
+
+    public static void setIsWriteAccess(boolean writeAccess){Configs.isWriteAccess = writeAccess;}
+
+    public static boolean getIsWriteAccess() {return isWriteAccess;}
+
+    public static boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public static void setIsAdmin(boolean isAdmin) {
+        Configs.isAdmin = isAdmin;
+    }
 }
+

@@ -175,6 +175,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal|center"
                 android:text="Écrire"
+                android:visibility="gone"
                 android:onClick="onMainClickManager"
                 />
 
