@@ -55,7 +55,7 @@ public class WriteTaskS7
 
                 while (isRunning.get() && (res.equals(0)))
                 {
-                    if(numAutomate == 0)
+                    if(numAutomate == 1)
                     {
                         comS7.WriteArea(S7.S7AreaDB, databloc, 5, 2, dbb5);
                         comS7.WriteArea(S7.S7AreaDB, databloc, 6, 2, dbb6);
@@ -108,9 +108,9 @@ public class WriteTaskS7
             chosenDBB = dbb7;
         }
 
-        for (int i = 0; i < valueInChars.length; i++)
+        for (int i = 0; i < arrayLength; i++)
         {
-            if(valueInChars[arrayLength -(i+1)] == 1)
+            if(Integer.parseInt(String.valueOf(valueInChars[arrayLength -(i+1)])) == 1)
             {
                 isTrue = true;
             }

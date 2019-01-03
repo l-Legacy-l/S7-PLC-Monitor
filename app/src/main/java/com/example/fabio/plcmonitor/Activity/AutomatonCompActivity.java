@@ -123,6 +123,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                     ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.red));
                     bt_comp_ecrire.setVisibility(View.GONE);
                     readS7.Stop();
+                    writeS7.Stop();
                 }
 
              break;
@@ -136,6 +137,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                 else
                 {
                     ll_comp_layoutEcriture.setVisibility(View.GONE);
+                    writeS7.Stop();
                 }
              break;
 
@@ -152,7 +154,7 @@ public class AutomatonCompActivity extends AppCompatActivity
              break;
 
             case R.id.bt_comp_saveDBB6:
-                if(!et_comp_dbb5.getText().toString().isEmpty())
+                if(!et_comp_dbb6.getText().toString().isEmpty())
                 {
                     writeS7.setWriteBool(6, et_comp_dbb6.getText().toString());
                     Toast.makeText(getApplicationContext(), "La valeur a bien été écrite", Toast.LENGTH_SHORT).show();
