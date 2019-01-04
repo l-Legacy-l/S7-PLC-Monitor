@@ -90,15 +90,13 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Connecté en : " + network.getTypeName(), Toast.LENGTH_SHORT).show();
 
                         try{
-                            readS7 = new ReadTaskS7(v, tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel,
+                            readS7 = new ReadTaskS7(this,v, tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel,
                                     tv_asserv_motPilotageVanne, cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4,
                                     bt_asserv_manuel, bt_asserv_auto, ib_asserv_connexion,2);
                             readS7.Start(ip,rack,slot);
 
                             writeS7 = new WriteTaskS7(2);
                             writeS7.Start(ip,rack,slot);
-
-                            ib_asserv_connexion.setBackgroundColor(getResources().getColor(R.color.green));
 
                             if(Configs.getIsWriteAccess())
                             {
@@ -110,25 +108,16 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Une erreur s'est produite, veuillez recommencer", Toast.LENGTH_LONG).show();
                             ib_asserv_connexion.setBackgroundColor(getResources().getColor(R.color.orange));
                         }
-                        /*
-                           if(!readS7.isConnected()){
-                            Toast.makeText(this,"Connexion impossible\nVérifiez l'automate", Toast.LENGTH_LONG).show();
-                            }else{
-                            }
-                           */
 
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        //writeS7 = new WriteTaskS7();
-                        //writeS7.Start(Globals.getIp(), Globals.getRack(), Globals.getSlot());
-
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "! Connexion réseau IMPOSSIBLE !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Impossible d'accéder au réseau, veuillez activer la connexion Wi-Fi", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -138,6 +127,7 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                     ib_asserv_connexion.setBackgroundColor(getResources().getColor(R.color.red));
                     bt_asserv_ecrire.setVisibility(View.GONE);
                     readS7.Stop();
+                    writeS7.Stop();
                 }
              break;
 

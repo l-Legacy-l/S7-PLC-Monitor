@@ -44,6 +44,8 @@ public class ReadTaskS7
     private ImageButton ib_asserv_connexion;
 
     private View vi_ui;
+    private AutomatonCompActivity automatonCompActivity;
+    private AutomatonAsservActivity automatonAsservActivity;
 
     //Attribut permettant de connaitre quelle automate on contacte
     private int numAutomate;
@@ -66,10 +68,11 @@ public class ReadTaskS7
     public boolean isConnected= false;
 
     //Constructeur ReadTaskS7 pour les comprimés
-    public ReadTaskS7(View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, TextView tv_comp_nbFlacon, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
+    public ReadTaskS7(AutomatonCompActivity automatonCompActivity,View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, TextView tv_comp_nbFlacon, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
                       Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion, int numAutomate)
     {
         //Objets modifiés par la tâche de fond
+        this.automatonCompActivity = automatonCompActivity;
         this.vi_ui = vi_ui;
         this.tv_comp_plcNumber = tv_comp_plcNumber;
         this.tv_comp_nbBouteille = tv_comp_nbBouteille;
@@ -89,11 +92,12 @@ public class ReadTaskS7
     }
 
     //Constructeur pour l'asservissement
-    public ReadTaskS7(View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, TextView tv_asserv_consigneAuto, TextView tv_asserv_consigneManuel,
+    public ReadTaskS7(AutomatonAsservActivity automatonAsservActivity, View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, TextView tv_asserv_consigneAuto, TextView tv_asserv_consigneManuel,
                       TextView tv_asserv_motPilotageVanne, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2, CheckBox cb_asserv_valve3,
                       CheckBox cb_asserv_valve4, Button bt_asserv_manuel, Button bt_asserv_auto, ImageButton ib_asserv_connexion, int numAutomate)
     {
         this.vi_ui = vi_ui;
+        this.automatonAsservActivity = automatonAsservActivity;
         this.tv_asserv_PLCnumber = tv_asserv_PLCnumber;
         this.tv_asserv_niveauEau = tv_asserv_niveauEau;
         this.tv_asserv_consigneAuto = tv_asserv_consigneAuto;
@@ -113,12 +117,6 @@ public class ReadTaskS7
         //Thread de lecture d'informations
         readThread = new Thread(plcS7);
     }
-
-    public boolean isConnected()
-    {
-        return isConnected;
-    }
-
 
     public void Start(String ip, String rack, String slot) {
         //Vérification si le thread n'est pas en cours
@@ -150,11 +148,14 @@ public class ReadTaskS7
         if(numAutomate == 1)
         {
             tv_comp_plcNumber.setText(String.valueOf(t));
+            ib_comp_connexion.setBackgroundColor(automatonCompActivity.getResources().getColor(R.color.green));
         }
         else
         {
             tv_asserv_PLCnumber.setText(String.valueOf(t));
+            ib_comp_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.green));
         }
+        Toast.makeText(vi_ui.getContext(), "Connexion établie", Toast.LENGTH_LONG).show();
     }
 
     //Mise à jour durant le traitement
@@ -395,6 +396,30 @@ public class ReadTaskS7
             catch(Exception e){
                 e.printStackTrace();
                 System.out.println("je passe" + e);
+
+                if(numAutomate == 1)
+                {
+                    //Connecté en wifi mais mauvaise configuration
+                    ib_comp_connexion.setBackgroundColor(automatonCompActivity.getResources().getColor(R.color.orange));
+                    //On affiche un toast de cette mannière autrement, erreur
+                    automatonCompActivity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(automatonCompActivity, "Impossible de se connecter à l'automate, vérifiez la configuration", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.orange));
+                    //On affiche un toast de cette mannière autrement, erreur
+                    automatonAsservActivity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(automatonAsservActivity, "Impossible de se connecter à l'automate, vérifiez la configuration", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+
             }
         }
 

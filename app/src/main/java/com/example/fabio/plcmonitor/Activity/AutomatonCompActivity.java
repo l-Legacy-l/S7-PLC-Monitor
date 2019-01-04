@@ -80,14 +80,12 @@ public class AutomatonCompActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "Connecté en : " + network.getTypeName(), Toast.LENGTH_SHORT).show();
 
                         try{
-                            readS7 = new ReadTaskS7(v, tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon, cb_comp_service, cb_comp_flacon,
+                            readS7 = new ReadTaskS7(this, v, tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon, cb_comp_service, cb_comp_flacon,
                                     bt_comp_5, bt_comp_10, bt_comp_15, ib_comp_connexion,1);
                             readS7.Start(ip,rack,slot);
 
                             writeS7 = new WriteTaskS7(1);
                             writeS7.Start(ip,rack,slot);
-
-                            ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.green));
 
                             if(Configs.getIsWriteAccess())
                             {
@@ -98,12 +96,6 @@ public class AutomatonCompActivity extends AppCompatActivity
                             Toast.makeText(getApplicationContext(),"Une erreur s'est produite, veuillez recommencer", Toast.LENGTH_LONG).show();
                             ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.orange));
                         }
-                        /*
-                           if(!readS7.isConnected()){
-                            Toast.makeText(this,"Connexion impossible\nVérifiez l'automate", Toast.LENGTH_LONG).show();
-                            }else{
-                            }
-                           */
 
                         try {
                             Thread.sleep(1000);
@@ -113,7 +105,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "! Connexion réseau IMPOSSIBLE !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Impossible d'accéder au réseau, veuillez activer la connexion Wi-Fi", Toast.LENGTH_SHORT).show();
                     }
                 }
 
