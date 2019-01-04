@@ -58,8 +58,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
+            android:enabled="false"
             android:onClick="onMainClickManager"
             android:text="Selecteur en service"
+            android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <CheckBox
@@ -70,6 +72,8 @@
             android:layout_marginTop="15dp"
             android:onClick="onMainClickManager"
             android:text="Arrivée des flacons vides"
+            android:textColor="@android:color/black"
+            android:enabled="false"
             android:textSize="18sp" />
 
         <TextView
@@ -94,6 +98,8 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:onClick="onMainClickManager"
+                android:enabled="false"
+                android:textColor="@android:color/black"
                 android:text="5" />
 
             <Button
@@ -102,6 +108,8 @@
                 android:layout_height="65dp"
                 android:layout_marginLeft="50dp"
                 android:onClick="onMainClickManager"
+                android:enabled="false"
+                android:textColor="@android:color/black"
                 android:text="10" />
 
             <Button
@@ -110,6 +118,8 @@
                 android:layout_height="65dp"
                 android:layout_marginLeft="50dp"
                 android:onClick="onMainClickManager"
+                android:enabled="false"
+                android:textColor="@android:color/black"
                 android:text="15" />
         </LinearLayout>
 

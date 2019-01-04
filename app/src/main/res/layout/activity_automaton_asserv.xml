@@ -73,7 +73,10 @@
                 android:id="@+id/bt_asserv_manuel"
                 android:layout_width="123dp"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:onClick="onMainClickManager"
+
+                android:textColor="@android:color/black"
                 android:text="Manuel" />
 
             <Button
@@ -81,16 +84,27 @@
                 android:layout_width="123dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
+                android:textColor="@android:color/black"
+                android:enabled="false"
                 android:onClick="onMainClickManager"
                 android:text="Automatique" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="État des valves ( ✓ = ouverte )"
+            android:textSize="18sp" />
+
         <LinearLayout
             android:layout_width="354dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -98,8 +112,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:clickable="false"
+                android:enabled="false"
                 android:onClick="onMainClickManager"
                 android:text="Valve 1 (principal)"
+                android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <CheckBox
@@ -110,6 +127,8 @@
                 android:layout_marginRight="0dp"
                 android:onClick="onMainClickManager"
                 android:text="Valve 2"
+                android:enabled="false"
+                android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -128,6 +147,8 @@
                 android:layout_marginLeft="15dp"
                 android:onClick="onMainClickManager"
                 android:text="Valve 3"
+                android:textColor="@android:color/black"
+                android:enabled="false"
                 android:textSize="16sp" />
 
             <CheckBox
@@ -138,6 +159,8 @@
                 android:layout_marginRight="0dp"
                 android:onClick="onMainClickManager"
                 android:text="Valve 4"
+                android:textColor="@android:color/black"
+                android:enabled="false"
                 android:textSize="16sp" />
 
         </LinearLayout>
