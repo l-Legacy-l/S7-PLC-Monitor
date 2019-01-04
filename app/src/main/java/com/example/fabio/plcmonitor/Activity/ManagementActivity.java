@@ -69,10 +69,9 @@ public class ManagementActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
+    public void onBackPressed()
     {
 
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(ManagementActivity.this);
             builder.setMessage("Voulez vous vous déconnecter ?");
             builder.setCancelable(true);
@@ -85,13 +84,12 @@ public class ManagementActivity extends AppCompatActivity {
             builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    //on peut terminer cette activité
+                    finish();
                 }
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }
-        return false;
+
     }
 }

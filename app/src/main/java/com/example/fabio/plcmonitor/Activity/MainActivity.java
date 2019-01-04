@@ -3,10 +3,12 @@ package com.example.fabio.plcmonitor.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.fabio.plcmonitor.R;
 
@@ -34,31 +36,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Voulez vous quitter l'application ?");
-            builder.setCancelable(true);
-            builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.cancel();
-                }
-            });
-            builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    System.exit(0);
-                }
-            });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
         }
-        return false;
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Appuyer 2 fois pour quitter l'application", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }
 
