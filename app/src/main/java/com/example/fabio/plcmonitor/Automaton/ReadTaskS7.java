@@ -64,9 +64,6 @@ public class ReadTaskS7
 
     private byte[] datasPLC = new byte[512], pillsPLC = new byte[2];
 
-    //Variable permettant de déterminer si l'utilisateur est connecté à l'automate
-    public boolean isConnected= false;
-
     //Constructeur ReadTaskS7 pour les comprimés
     public ReadTaskS7(AutomatonCompActivity automatonCompActivity,View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, TextView tv_comp_nbFlacon, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
                       Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion, int numAutomate)
@@ -153,7 +150,7 @@ public class ReadTaskS7
         else
         {
             tv_asserv_PLCnumber.setText(String.valueOf(t));
-            ib_comp_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.green));
+            ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.green));
         }
         Toast.makeText(vi_ui.getContext(), "Connexion établie", Toast.LENGTH_LONG).show();
     }
@@ -408,6 +405,7 @@ public class ReadTaskS7
                         }
                     });
                 }
+
                 else
                 {
                     ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.orange));
@@ -450,5 +448,3 @@ public class ReadTaskS7
     }
 
 }
-
-
