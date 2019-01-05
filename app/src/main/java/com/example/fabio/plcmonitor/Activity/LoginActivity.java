@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     //On est connecté, on passe à l'activité de management
                     Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
-                    //On passe en paramètre l'état isAdmin à l'activité de Management
-                    intent.putExtra("isAdmin", Boolean.toString(user1.getIsAdmin()));
                     startActivity(intent);
 
                 }

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.fabio.plcmonitor.Configs;
 import com.example.fabio.plcmonitor.R;
 
 public class ManagementActivity extends AppCompatActivity {
@@ -27,9 +28,8 @@ public class ManagementActivity extends AppCompatActivity {
         //ajoute les entrées de menu.xml à l'ActionBar
         getMenuInflater().inflate(R.menu.menu, menu);
         gestionItem = menu.findItem(R.id.action_gestion);
-        Boolean isAdmin =  Boolean.parseBoolean(this.getIntent().getStringExtra("isAdmin"));
 
-        if(!isAdmin)
+        if(!Configs.getIsAdmin())
         {
             gestionItem.setVisible(false);
         }
@@ -55,6 +55,7 @@ public class ManagementActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_gestion) {
+            finish();
             Intent intent = new Intent(getApplicationContext(), ManagementUserActivity.class);
             startActivity(intent);
         }
