@@ -34,13 +34,13 @@ public class ReadTaskS7
     //Pour les comprimés
     private TextView tv_comp_plcNumber, tv_comp_nbBouteille, tv_comp_nbFlacon;
     private CheckBox cb_comp_service, cb_comp_flacon;
-    private Button bt_comp_5, bt_comp_10, bt_comp_15;
+    private Button bt_comp_5, bt_comp_10, bt_comp_15, bt_comp_ecrire;
     private ImageButton ib_comp_connexion;
 
     //Pour l'asservissement de niveau
     private TextView tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel, tv_asserv_motPilotageVanne;
     private CheckBox cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4;
-    private Button bt_asserv_manuel, bt_asserv_auto;
+    private Button bt_asserv_manuel, bt_asserv_auto, bt_asserv_ecrire;
     private ImageButton ib_asserv_connexion;
 
     private View vi_ui;
@@ -66,7 +66,7 @@ public class ReadTaskS7
 
     //Constructeur ReadTaskS7 pour les comprimés
     public ReadTaskS7(AutomatonCompActivity automatonCompActivity,View vi_ui,TextView tv_comp_plcNumber, TextView tv_comp_nbBouteille, TextView tv_comp_nbFlacon, CheckBox cb_comp_service, CheckBox cb_comp_flacon,
-                      Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, ImageButton ib_comp_connexion, int numAutomate)
+                      Button bt_comp_5, Button bt_comp_10, Button bt_comp_15, Button bt_comp_ecrire, ImageButton ib_comp_connexion, int numAutomate)
     {
         //Objets modifiés par la tâche de fond
         this.automatonCompActivity = automatonCompActivity;
@@ -79,6 +79,7 @@ public class ReadTaskS7
         this.bt_comp_5 = bt_comp_5;
         this.bt_comp_10 = bt_comp_10;
         this.bt_comp_15 = bt_comp_15;
+        this.bt_comp_ecrire = bt_comp_ecrire;
         this.ib_comp_connexion = ib_comp_connexion;
         this.numAutomate = numAutomate;
 
@@ -90,8 +91,8 @@ public class ReadTaskS7
 
     //Constructeur pour l'asservissement
     public ReadTaskS7(AutomatonAsservActivity automatonAsservActivity, View vi_ui, TextView tv_asserv_PLCnumber, TextView tv_asserv_niveauEau, TextView tv_asserv_consigneAuto, TextView tv_asserv_consigneManuel,
-                      TextView tv_asserv_motPilotageVanne, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2, CheckBox cb_asserv_valve3,
-                      CheckBox cb_asserv_valve4, Button bt_asserv_manuel, Button bt_asserv_auto, ImageButton ib_asserv_connexion, int numAutomate)
+                      TextView tv_asserv_motPilotageVanne, CheckBox cb_asserv_valve1, CheckBox cb_asserv_valve2, CheckBox cb_asserv_valve3, CheckBox cb_asserv_valve4,
+                      Button bt_asserv_manuel, Button bt_asserv_auto, Button bt_asserv_ecrire, ImageButton ib_asserv_connexion, int numAutomate)
     {
         this.vi_ui = vi_ui;
         this.automatonAsservActivity = automatonAsservActivity;
@@ -106,6 +107,7 @@ public class ReadTaskS7
         this.cb_asserv_valve4 = cb_asserv_valve4;
         this.bt_asserv_manuel = bt_asserv_manuel;
         this.bt_asserv_auto = bt_asserv_auto;
+        this.bt_asserv_ecrire = bt_asserv_ecrire;
         this.ib_asserv_connexion = ib_asserv_connexion;
         this.numAutomate = numAutomate;
 
@@ -140,18 +142,27 @@ public class ReadTaskS7
 
     //Méthode exécuté avant le lancement
     private void downloadOnPreExecute(int t) {
-        //Affichage du numéro de PLC
+        //Affichage du numéro de PLC + affichage du bouton écrire
         //Si la demande vient de l'activité pour les comprimés
         if(numAutomate == 1)
         {
             tv_comp_plcNumber.setText(String.valueOf(t));
             ib_comp_connexion.setBackgroundColor(automatonCompActivity.getResources().getColor(R.color.green));
+            if(Configs.getIsWriteAccess())
+            {
+                bt_comp_ecrire.setVisibility(View.VISIBLE);
+            }
         }
         else
         {
             tv_asserv_PLCnumber.setText(String.valueOf(t));
             ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.green));
+            if(Configs.getIsWriteAccess())
+            {
+                bt_asserv_ecrire.setVisibility(View.VISIBLE);
+            }
         }
+        //A partir de cette méthode la connexion est établie, alors on peut le signaler
         Toast.makeText(vi_ui.getContext(), "Connexion établie", Toast.LENGTH_LONG).show();
     }
 

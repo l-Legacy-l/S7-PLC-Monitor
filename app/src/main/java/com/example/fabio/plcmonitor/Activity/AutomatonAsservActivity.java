@@ -92,17 +92,11 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                         try{
                             readS7 = new ReadTaskS7(this,v, tv_asserv_PLCnumber, tv_asserv_niveauEau, tv_asserv_consigneAuto, tv_asserv_consigneManuel,
                                     tv_asserv_motPilotageVanne, cb_asserv_valve1, cb_asserv_valve2, cb_asserv_valve3, cb_asserv_valve4,
-                                    bt_asserv_manuel, bt_asserv_auto, ib_asserv_connexion,2);
+                                    bt_asserv_manuel, bt_asserv_auto, bt_asserv_ecrire, ib_asserv_connexion,2);
                             readS7.Start(ip,rack,slot);
 
                             writeS7 = new WriteTaskS7(2);
                             writeS7.Start(ip,rack,slot);
-
-                            if(Configs.getIsWriteAccess())
-                            {
-                                bt_asserv_ecrire.setVisibility(View.VISIBLE);
-                            }
-
                         }
                         catch(Exception e){
                             Toast.makeText(getApplicationContext(),"Une erreur s'est produite, veuillez recommencer", Toast.LENGTH_LONG).show();

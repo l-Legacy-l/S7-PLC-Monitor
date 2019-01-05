@@ -81,16 +81,12 @@ public class AutomatonCompActivity extends AppCompatActivity
 
                         try{
                             readS7 = new ReadTaskS7(this, v, tv_comp_PLCnumber, tv_comp_nbBouteille, tv_comp_nbFlacon, cb_comp_service, cb_comp_flacon,
-                                    bt_comp_5, bt_comp_10, bt_comp_15, ib_comp_connexion,1);
+                                    bt_comp_5, bt_comp_10, bt_comp_15, bt_comp_ecrire, ib_comp_connexion,1);
                             readS7.Start(ip,rack,slot);
 
                             writeS7 = new WriteTaskS7(1);
                             writeS7.Start(ip,rack,slot);
 
-                            if(Configs.getIsWriteAccess())
-                            {
-                                bt_comp_ecrire.setVisibility(View.VISIBLE);
-                            }
                         }
                         catch(Exception e){
                             Toast.makeText(getApplicationContext(),"Une erreur s'est produite, veuillez recommencer", Toast.LENGTH_LONG).show();
