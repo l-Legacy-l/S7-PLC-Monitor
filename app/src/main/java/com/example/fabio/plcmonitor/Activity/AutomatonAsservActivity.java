@@ -120,6 +120,7 @@ public class AutomatonAsservActivity extends AppCompatActivity {
                     //On est déjà connecté donc on veut se déconnecter
                     ib_asserv_connexion.setBackgroundColor(getResources().getColor(R.color.red));
                     bt_asserv_ecrire.setVisibility(View.GONE);
+                    ll_asserv_layoutEcriture.setVisibility(View.GONE);
                     readS7.Stop();
                     writeS7.Stop();
                 }

@@ -110,6 +110,7 @@ public class AutomatonCompActivity extends AppCompatActivity
                     //On est déjà connecté donc on veut se déconnecter
                     ib_comp_connexion.setBackgroundColor(getResources().getColor(R.color.red));
                     bt_comp_ecrire.setVisibility(View.GONE);
+                    ll_comp_layoutEcriture.setVisibility(View.GONE);
                     readS7.Stop();
                     writeS7.Stop();
                 }
