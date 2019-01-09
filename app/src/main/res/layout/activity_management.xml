@@ -9,20 +9,20 @@
 
     <Button
         android:id="@+id/bt_management_comprime"
-        android:layout_width="208dp"
+        android:layout_width="260dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:onClick="btnClick"
-        android:text="Comprimés" />
+        android:text="Conditionnement de comprimés" />
 
     <Button
         android:id="@+id/bt_management_regulateur"
-        android:layout_width="208dp"
+        android:layout_width="260dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:onClick="btnClick"
-        android:text="Régulateur" />
+        android:text="Asservissement de niveau " />
 </LinearLayout>
