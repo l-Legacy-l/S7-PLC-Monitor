@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 //On vérifie si le mot de passe entrée correspond à l'user qui possède le mail
                 if(mdp.equals(user1.getMdp()))
                 {
-                    Toast.makeText(getApplicationContext(), "Bienvenue " + user1.getPrenom() + " "+user1.getNom(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Bienvenue " + user1.getFirstname() + " "+user1.getLastname(),Toast.LENGTH_SHORT).show();
                     if(user1.getIsAdmin())
                     {
                         Configs.setIsAdmin(true);

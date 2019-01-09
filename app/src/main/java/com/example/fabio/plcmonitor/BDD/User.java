@@ -3,14 +3,14 @@ package com.example.fabio.plcmonitor.BDD;
 public class User {
 
     private int id;
-    private String nom, prenom, email, mdp;
+    private String firstname, lastname, email, mdp;
     private boolean writeAccess, isAdmin;
 
     public User() {}
 
-    public User(String nom,String prenom, String email, String mdp,boolean writeAccess, boolean isAdmin){
-        this.nom = nom;
-        this.prenom = prenom;
+    public User(String lastname,String firstname, String email, String mdp,boolean writeAccess, boolean isAdmin){
+        this.lastname = lastname;
+        this.firstname = firstname;
         this.email = email;
         this.mdp = mdp;
         this.writeAccess = writeAccess;
@@ -20,11 +20,11 @@ public class User {
     public int getId(){return id;}
     public void setId(int i){this.id = i;}
 
-    public String getNom(){return nom;}
-    public void setNom(String nom){this.nom = nom;}
+    public String getFirstname(){return firstname;}
+    public void setFirstname(String firstname){this.firstname = firstname;}
 
-    public String getPrenom(){return prenom;}
-    public void setPrenom(String prenom){this.prenom = prenom;}
+    public String getLastname(){return lastname;}
+    public void setLastname(String lastname){this.lastname = lastname;}
 
     public String getEmail(){return email;}
     public void setEmail(String email){this.email = email;}
@@ -43,8 +43,8 @@ public class User {
         return "ID: "+Integer.toString(id)+"\n"
                 +"Email: "+email+"\n"
                 +"Password: "+mdp+"\n"
-                +"Nom: "+nom+"\n"
-                +"Prenom: "+prenom+"\n"
+                +"Nom: "+lastname+"\n"
+                +"Prenom: "+firstname+"\n"
                 +"Admin: "+isAdmin;
     }
 }

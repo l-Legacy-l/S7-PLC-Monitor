@@ -21,10 +21,10 @@ public class UserAccessDB {
     private static final int NUM_COL_EMAIL = 1;
     private static final String COL_PASSWORD = "PASSWORD";
     private static final int NUM_COL_PASSWORD = 2;
-    private static final String COL_NOM = "NOM";
-    private static final int NUM_COL_NOM = 3;
-    private static final String COL_PRENOM = "PRENOM";
-    private static final int NUM_COL_PRENOM = 4;
+    private static final String COL_LASTNAME = "LASTNAME";
+    private static final int NUM_COL_LASTNAME = 3;
+    private static final String COL_FIRSTNAME = "FIRSTNAME";
+    private static final int NUM_COL_FIRSTNAME = 4;
     private static final String COL_WRITE = "WRITE";
     private static final int NUM_COL_WRITE = 5;
     private static final String COL_ADMIN = "ADMIN";
@@ -43,8 +43,8 @@ public class UserAccessDB {
 
         ContentValues content = new ContentValues();
 
-        content.put(COL_NOM, u.getNom());
-        content.put(COL_PRENOM, u.getPrenom());
+        content.put(COL_LASTNAME, u.getLastname());
+        content.put(COL_FIRSTNAME, u.getFirstname());
         content.put(COL_PASSWORD, u.getMdp());
         content.put(COL_EMAIL, u.getEmail());
         content.put(COL_WRITE, u.getWriteAccess());
@@ -60,8 +60,8 @@ public class UserAccessDB {
 
         content.put(COL_EMAIL, u.getEmail());
         content.put(COL_PASSWORD, u.getMdp());
-        content.put(COL_NOM, u.getNom());
-        content.put(COL_PRENOM, u.getPrenom());
+        content.put(COL_LASTNAME, u.getLastname());
+        content.put(COL_FIRSTNAME, u.getFirstname());
         content.put(COL_WRITE, u.getWriteAccess());
         content.put(COL_ADMIN, u.getIsAdmin());
 
@@ -76,7 +76,7 @@ public class UserAccessDB {
 
     public ArrayList<User> getAllUser(){
         Cursor c = db.query(TABLE_USER, new String[]{
-                COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_WRITE, COL_ADMIN},
+                COL_ID, COL_EMAIL, COL_PASSWORD, COL_LASTNAME, COL_FIRSTNAME, COL_WRITE, COL_ADMIN},
                 null, null, null, null, null,null);
 
         ArrayList<User> tabUser = new ArrayList<User>();
@@ -90,8 +90,8 @@ public class UserAccessDB {
             user1.setId(c.getInt(NUM_COL_ID));
             user1.setEmail(c.getString(NUM_COL_EMAIL));
             user1.setMdp(c.getString(NUM_COL_PASSWORD));
-            user1.setNom(c.getString(NUM_COL_NOM));
-            user1.setPrenom(c.getString(NUM_COL_PRENOM));
+            user1.setLastname(c.getString(NUM_COL_LASTNAME));
+            user1.setFirstname(c.getString(NUM_COL_FIRSTNAME));
 
             if(c.getInt(NUM_COL_WRITE) == 1)
             {
@@ -119,7 +119,7 @@ public class UserAccessDB {
 
     public User getUser (String email)
     {
-        Cursor c = db.query(TABLE_USER, new String[]{COL_ID, COL_EMAIL, COL_PASSWORD, COL_NOM, COL_PRENOM, COL_WRITE, COL_ADMIN},
+        Cursor c = db.query(TABLE_USER, new String[]{COL_ID, COL_EMAIL, COL_PASSWORD, COL_LASTNAME, COL_FIRSTNAME, COL_WRITE, COL_ADMIN},
                 COL_EMAIL + " LIKE \"" + email + "\"", null, null, null, COL_EMAIL);
 
         //Si pas de résultat
@@ -134,8 +134,8 @@ public class UserAccessDB {
         User user1 = new User();
         user1.setId(c.getInt(NUM_COL_ID));
         user1.setEmail(c.getString(NUM_COL_EMAIL));
-        user1.setNom(c.getString(NUM_COL_NOM));
-        user1.setPrenom(c.getString(NUM_COL_PRENOM));
+        user1.setLastname(c.getString(NUM_COL_LASTNAME));
+        user1.setFirstname(c.getString(NUM_COL_FIRSTNAME));
         user1.setMdp(c.getString(NUM_COL_PASSWORD));
 
         if(c.getInt(NUM_COL_WRITE) == 1)
