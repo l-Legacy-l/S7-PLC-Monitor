@@ -44,7 +44,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Datablock"
+        android:hint="Databloc"
         android:inputType="number" />
 
     <Button

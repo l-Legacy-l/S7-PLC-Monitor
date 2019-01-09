@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:text="État des valves ( ✓ = ouverte )"
+            android:text="État des valves ( ✓ = fermé )"
             android:textSize="18sp" />
 
         <LinearLayout
