@@ -408,10 +408,9 @@ public class ReadTaskS7
                 if(numAutomate == 1)
                 {
                     //Connecté en wifi mais mauvaise configuration
-                    ib_comp_connexion.setBackgroundColor(automatonCompActivity.getResources().getColor(R.color.orange));
-                    //On affiche un toast de cette mannière autrement, erreur
                     automatonCompActivity.runOnUiThread(new Runnable() {
                         public void run() {
+                            ib_comp_connexion.setBackgroundColor(automatonCompActivity.getResources().getColor(R.color.orange));
                             Toast.makeText(automatonCompActivity, "Impossible de se connecter à l'automate, vérifiez la configuration", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -419,16 +418,14 @@ public class ReadTaskS7
 
                 else
                 {
-                    ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.orange));
                     //On affiche un toast de cette mannière autrement, erreur
                     automatonAsservActivity.runOnUiThread(new Runnable() {
                         public void run() {
+                            ib_asserv_connexion.setBackgroundColor(automatonAsservActivity.getResources().getColor(R.color.orange));
                             Toast.makeText(automatonAsservActivity, "Impossible de se connecter à l'automate, vérifiez la configuration", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-
-
             }
         }
 
